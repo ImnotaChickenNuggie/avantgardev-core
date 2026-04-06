@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════
+   AVANTGARDEV — Design System Tokens (Tailwind v4 CSS-first)
+   ══════════════════════════════════════════════════════════════ */
+
+@theme {
+	/* ─── COLORES BASE ───────────────────────────────────────── */
+	--color-bg: #070711;
+	--color-surface: #0e0e1c;
+	--color-surface-2: #16162a;
+	--color-text: #f7ebec;
+	--color-muted: #9490a8;
+	--color-disabled: #4a4860;
+	--color-border: #1f1f38;
+	--color-subtle: #141428;
+
+	/* ─── COLORES DE ACENTO ──────────────────────────────────── */
+	--color-primary: #197bbd;
+	--color-primary-hover: #1a8ed4;
+	--color-primary-muted: rgb(25 123 189 / 0.1);
+	--color-neon: #39ff14;
+	--color-neon-muted: rgb(57 255 20 / 0.1);
+	--color-danger: #f71735;
+	--color-danger-muted: rgb(247 23 53 / 0.1);
+
+	/* ─── FUENTES ────────────────────────────────────────────── */
+	--font-heading: "Vanregis", "Arial Black", sans-serif;
+	--font-sans: "Space Grotesk", sans-serif;
+	--font-mono: "JetBrains Mono", "Courier New", monospace;
+
+	/* ─── ESCALA TIPOGRÁFICA EXTRA ───────────────────────────── */
+	--text-2xs: 0.625rem;
+	--text-2xs--line-height: 1.4;
+	--text-2xs--letter-spacing: 0.08em;
+	--text-display: 8rem;
+	--text-display--line-height: 0.9;
+	--text-display--letter-spacing: -0.06em;
+
+	/* ─── ESPACIADO EXTRA ────────────────────────────────────── */
+	--spacing-18: 4.5rem;
+	--spacing-22: 5.5rem;
+	--spacing-26: 6.5rem;
+	--spacing-30: 7.5rem;
+	--spacing-34: 8.5rem;
+	--spacing-38: 9.5rem;
+	--spacing-42: 10.5rem;
+
+	/* ─── SOMBRAS / GLOWS ────────────────────────────────────── */
+	--shadow-glow-primary: 0 0 20px rgb(25 123 189 / 0.35);
+	--shadow-glow-primary-lg: 0 0 40px rgb(25 123 189 / 0.25);
+	--shadow-glow-neon: 0 0 20px rgb(57 255 20 / 0.4);
+	--shadow-glow-neon-lg: 0 0 60px rgb(57 255 20 / 0.2);
+	--shadow-glow-danger: 0 0 20px rgb(247 23 53 / 0.35);
+	--shadow-glow-subtle: 0 0 30px rgb(247 235 236 / 0.04);
+
+	/* ─── EASINGS ────────────────────────────────────────────── */
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	/* ─── ANIMACIONES ────────────────────────────────────────── */
+	--animate-fade-in: fade-in 0.3s ease-out both;
+	--animate-fade-in-up: fade-in-up 0.5s ease-out both;
+	--animate-slide-in-right: slide-in-right 0.4s ease-out both;
+	--animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+	--animate-marquee: marquee 30s linear infinite;
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────────────────── */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-in-right {
+	from {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes glow-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 20px rgb(57 255 20 / 0.2);
+	}
+	50% {
+		box-shadow: 0 0 40px rgb(57 255 20 / 0.5);
+	}
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL STYLES
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+	color-scheme: dark;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+}
+
+/* ─── Reducir motion para accesibilidad ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* ─── @font-face: Vanregis (local) ───────────────────────────── */
+/* TODO: Colocar vanregis.woff2 en public/fonts/ */
+@font-face {
+	font-family: "Vanregis";
+	src: url("/fonts/vanregis.woff2") format("woff2");
+	font-weight: 700 900;
+	font-display: swap;
+}
+
+/* ─── Selección de texto ─────────────────────────────────────── */
+::selection {
+	background-color: rgb(25 123 189 / 0.3);
+	color: #f7ebec;
+}
+
+/* ─── Scrollbar personalizada ────────────────────────────────── */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #070711;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #1f1f38;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #197bbd;
+}
