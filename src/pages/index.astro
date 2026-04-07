@@ -1,13 +1,23 @@
 ---
+import AuthorityBanner from "../components/AuthorityBanner.astro";
+import Contact from "../components/Contact.astro";
+import FAQs from "../components/FAQs.astro";
+import Hero from "../components/Hero.astro";
+import Manifesto from "../components/Manifesto.astro";
+import Methodology from "../components/Methodology.astro";
+import Navbar from "../components/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 ---
 
 <Layout>
+	<Navbar />
 	<main>
-		<h1 class="font-heading font-black text-6xl lg:text-8xl text-text">
-			TRANSFORMAMOS IDEAS EN
-			<span class="text-neon">REALIDADES</span>
-		</h1>
+		<Hero />
+		<AuthorityBanner />
+		<Manifesto />
+		<Methodology />
+		<FAQs />
+		<Contact />
 	</main>
 </Layout>

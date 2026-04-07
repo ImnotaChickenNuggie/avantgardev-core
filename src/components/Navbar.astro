@@ -1,0 +1,103 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+---
+
+<header
+	class="fixed top-0 left-0 z-50 w-full border-b border-border/50 bg-bg/80 backdrop-blur-xl"
+>
+	<nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+		<a href="/" class="flex flex-row space-x-2 items-center">
+			<Image src={logo} alt="Avantgardev" height={36} quality="high" />
+			<span class="font-heading text-2xl">AVANTGARDEV</span>
+		</a>
+
+		<ul class="hidden items-center gap-8 md:flex">
+			<li>
+				<a
+					href="#manifiesto"
+					class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text"
+				>
+					Manifiesto
+				</a>
+			</li>
+			<li>
+				<a
+					href="#metodologia"
+					class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text"
+				>
+					Metodologia
+				</a>
+			</li>
+			<li>
+				<a
+					href="#proyectos"
+					class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text"
+				>
+					Proyectos
+				</a>
+			</li>
+			<li>
+				<a
+					href="#faqs"
+					class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text"
+				>
+					FAQs
+				</a>
+			</li>
+		</ul>
+
+		<a
+			href="#contacto"
+			class="hidden rounded-lg border border-neon/40 px-5 py-2 text-sm font-semibold tracking-widest text-neon uppercase transition-all hover:border-neon hover:bg-neon/10 hover:shadow-glow-neon md:inline-flex"
+		>
+			CONECTEMOS
+		</a>
+
+		<!-- Mobile menu button -->
+		<button
+			type="button"
+			id="mobile-menu-btn"
+			class="inline-flex items-center justify-center rounded-lg p-2 text-muted transition-colors hover:text-text md:hidden"
+			aria-label="Abrir menu"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+			</svg>
+		</button>
+	</nav>
+
+	<!-- Mobile menu -->
+	<div
+		id="mobile-menu"
+		class="hidden border-t border-border/50 bg-bg/95 backdrop-blur-xl md:hidden"
+	>
+		<div class="flex flex-col gap-4 px-6 py-6">
+			<a href="#manifiesto" class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text">Manifiesto</a>
+			<a href="#metodologia" class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text">Metodologia</a>
+			<a href="#proyectos" class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text">Proyectos</a>
+			<a href="#faqs" class="text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text">FAQs</a>
+			<a
+				href="#contacto"
+				class="mt-2 rounded-lg border border-neon/40 px-5 py-2.5 text-center text-sm font-semibold tracking-widest text-neon uppercase transition-all hover:border-neon hover:bg-neon/10"
+			>
+				CONECTEMOS
+			</a>
+		</div>
+	</div>
+</header>
+
+<script>
+	const btn = document.getElementById("mobile-menu-btn");
+	const menu = document.getElementById("mobile-menu");
+
+	btn?.addEventListener("click", () => {
+		menu?.classList.toggle("hidden");
+	});
+
+	menu?.querySelectorAll("a").forEach((link) => {
+		link.addEventListener("click", () => {
+			menu?.classList.add("hidden");
+		});
+	});
+</script>

@@ -1,0 +1,70 @@
+---
+const values = [
+	{
+		title: "IA InnecesarIA",
+		description:
+			"No implementamos tecnologia por tendencia. La usamos solo si aporta un valor real a tu sueno.",
+	},
+	{
+		title: "Prioridad Humana",
+		description:
+			"Tu idea es el centro. No buscamos imponer nuestra vision, sino potenciar la tuya.",
+	},
+	{
+		title: "Artesania Digital",
+		description:
+			"No generamos basura digital. Cada linea de codigo y cada pixel tiene una razon de ser. Eficiencia y durabilidad por encima de la inmediatez.",
+	},
+	{
+		title: "Transparencia Radical",
+		description:
+			"Te diremos la verdad, aunque signifique venderte menos. Proyectos solidos y honestos.",
+	},
+	{
+		title: "Profesionalismo al mando",
+		description:
+			'Soluciones listas para crecer, no "vibe coding" de 5 minutos que requiere reestructuracion en 6 meses.',
+	},
+	{
+		title: "Ingenieria con Alma",
+		description: 'Codeamos con el cerebro y disenamos con el alma; no "vibramos" con el codigo.',
+	},
+];
+---
+
+<section id="manifiesto" class="relative py-26 lg:py-38">
+	<div class="mx-auto max-w-5xl px-6">
+		<div class="mb-18 text-center">
+			<p
+				class="mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase"
+			>
+				Nuestro manifiesto
+			</p>
+			<h2 class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl">
+				EN LO QUE CREEMOS
+			</h2>
+		</div>
+
+		<div class="space-y-0">
+			{
+				values.map((value, i) => (
+					<article class="group border-t border-border/40 py-10 transition-colors last:border-b hover:border-neon/20 lg:py-14">
+						<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8 lg:gap-12">
+							<span class="font-heading text-5xl font-black text-border/60 transition-colors group-hover:text-neon/30 lg:text-6xl">
+								{String(i + 1).padStart(2, "0")}
+							</span>
+							<div class="flex-1">
+								<h3 class="mb-3 text-xl font-bold tracking-tight text-text sm:text-2xl">
+									{value.title}
+								</h3>
+								<p class="max-w-2xl leading-relaxed text-muted">
+									{value.description}
+								</p>
+							</div>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

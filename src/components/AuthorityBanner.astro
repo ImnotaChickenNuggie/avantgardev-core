@@ -1,0 +1,36 @@
+---
+
+---
+
+<section class="relative overflow-hidden border-y border-border/30 bg-surface py-16">
+	<div class="mx-auto max-w-7xl px-6">
+		<p
+			class="mb-10 text-center font-mono text-xs font-medium tracking-[0.3em] text-disabled uppercase"
+		>
+			Ideas transformadas
+		</p>
+	</div>
+
+	<!-- Marquee -->
+	<div class="relative">
+		<!-- Fade edges -->
+		<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-surface to-transparent" />
+		<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-surface to-transparent" />
+
+		<div class="flex animate-marquee items-center gap-16">
+			{
+				[...Array(2)].map(() => (
+					<div class="flex shrink-0 items-center gap-16">
+						{["STARTUP ALPHA", "BRAND NOVA", "TECH VERTEX", "STUDIO ARC", "NEXUS CO", "FORGE LAB"].map(
+							(name) => (
+								<span class="whitespace-nowrap font-heading text-2xl font-bold tracking-wider text-disabled/40 uppercase select-none">
+									{name}
+								</span>
+							),
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

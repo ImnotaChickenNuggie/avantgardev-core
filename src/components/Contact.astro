@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import ContactForm from "./ContactForm";
+---
+
+<section
+	id='contacto'
+	class='relative bg-surface py-26 lg:py-38'
+>
+	<!-- Background glow -->
+	<div
+		class='pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(57,255,20,0.03),transparent_50%)]'
+	>
+	</div>
+
+	<div class='relative mx-auto max-w-4xl px-6'>
+		<div class='mb-14 text-center'>
+			<p
+				class='mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase'
+			>
+				Comencemos
+			</p>
+			<h2
+				class='font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl'
+			>
+				DALE VIDA A TUS SUENOS
+			</h2>
+			<p
+				class='mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted'
+			>
+				No dejes que una gran idea se quede en el papel. Unete a nuestro
+				colectivo disruptivo y hablemos de como potenciar tu proyecto
+				con tecnologia y diseno de vanguardia.
+			</p>
+		</div>
+
+		<div class='mx-auto max-w-xl'>
+			<ContactForm client:visible />
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<footer class='border-t border-border/30 bg-bg py-8'>
+	<div
+		class='mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row'
+	>
+		<a
+			href='/'
+			class='flex flex-row space-x-2 items-center'
+		>
+			<Image
+				src={logo}
+				alt='Avantgardev'
+				height={24}
+				quality='medium'
+			/>
+			<span
+				class='font-heading text-lg font-black tracking-tight text-text'
+				>AVANTGARDEV</span
+			>
+		</a>
+		<p class='text-xs text-disabled'>
+			&copy; {new Date().getFullYear()} Avantgardev. Todos los derechos reservados.
+		</p>
+	</div>
+</footer>

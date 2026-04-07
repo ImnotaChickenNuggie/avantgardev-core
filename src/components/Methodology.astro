@@ -1,0 +1,106 @@
+---
+const steps = [
+	{
+		number: "01",
+		title: "Inmersion",
+		subtitle: "Entendemos tu vision",
+		description:
+			"Nos sumergimos en tus suenos para disenar la propuesta tecnologica que realmente necesitas.",
+		accent: "neon",
+	},
+	{
+		number: "02",
+		title: "Definicion",
+		subtitle: "Trazamos el camino",
+		description: "Solucion a medida, transparencia radical y ajustes para potenciar tu marca.",
+		accent: "primary",
+	},
+	{
+		number: "03",
+		title: "Creacion",
+		subtitle: "Construimos el futuro",
+		description: "Te hacemos parte del proceso, desarrollando el apartado visual y tu MVP.",
+		accent: "neon",
+	},
+	{
+		number: "04",
+		title: "Despegue",
+		subtitle: "Tu realidad digital",
+		description: "Lanzamiento al mercado y acompanamiento continuo.",
+		accent: "primary",
+	},
+];
+---
+
+<section id="metodologia" class="relative bg-surface py-26 lg:py-38">
+	<!-- Background pattern -->
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(124,58,237,0.04),transparent_50%)]"
+	/>
+
+	<div class="relative mx-auto max-w-7xl px-6">
+		<div class="mb-18 text-center">
+			<p
+				class="mb-4 font-mono text-xs font-medium tracking-[0.3em] text-primary uppercase"
+			>
+				Nuestro proceso
+			</p>
+			<h2
+				class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl"
+			>
+				METODOLOGIA EVOLUTIVA
+			</h2>
+		</div>
+
+		<div class="grid gap-6 sm:grid-cols-2 lg:gap-8">
+			{
+				steps.map((step) => (
+					<article
+						class:list={[
+							"group relative overflow-hidden rounded-2xl border bg-bg/50 p-8 transition-all lg:p-10",
+							step.accent === "neon"
+								? "border-neon/10 hover:border-neon/30 hover:shadow-glow-neon"
+								: "border-primary/10 hover:border-primary/30 hover:shadow-glow-primary",
+						]}
+					>
+						<!-- Step number background -->
+						<span
+							class:list={[
+								"pointer-events-none absolute -top-4 -right-4 font-heading text-[8rem] font-black leading-none select-none",
+								step.accent === "neon" ? "text-neon/[0.03]" : "text-primary/[0.04]",
+							]}
+						>
+							{step.number}
+						</span>
+
+						<div class="relative">
+							<span
+								class:list={[
+									"mb-4 inline-block font-mono text-xs font-bold tracking-[0.3em] uppercase",
+									step.accent === "neon" ? "text-neon" : "text-primary",
+								]}
+							>
+								Paso {step.number}
+							</span>
+
+							<h3 class="mb-2 text-2xl font-bold tracking-tight text-text">
+								{step.title}
+							</h3>
+
+							<p
+								class:list={[
+									"mb-4 text-sm font-semibold",
+									step.accent === "neon" ? "text-neon/70" : "text-primary/70",
+								]}
+							>
+								{step.subtitle}
+							</p>
+
+							<p class="leading-relaxed text-muted">{step.description}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
