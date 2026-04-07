@@ -123,14 +123,14 @@ export default function ContactForm() {
 
 			<div>
 				<label htmlFor="message" className="mb-2 block text-sm font-medium text-text">
-					¿Que sueno vamos a construir?
+					¿Que sueño vamos a construir?
 				</label>
 				<textarea
 					id="message"
 					name="message"
 					required
 					rows={5}
-					placeholder="Cuentanos sobre tu proyecto, tu vision y lo que necesitas..."
+					placeholder="Cuentanos sobre tu proyecto, tu visión y lo que necesitas..."
 					className="w-full resize-none rounded-lg border border-border/60 bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
 				/>
 			</div>
@@ -146,7 +146,7 @@ export default function ContactForm() {
 				disabled={status === "sending"}
 				className="group w-full rounded-lg bg-neon px-8 py-4 text-sm font-bold tracking-widest text-bg uppercase transition-all hover:shadow-glow-neon active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
 			>
-				{status === "sending" ? "Enviando..." : "Iniciar la transformacion"}
+				{status === "sending" ? "Enviando..." : "Inicia la transformación"}
 			</button>
 
 			<p className="text-center text-2xs text-disabled">
