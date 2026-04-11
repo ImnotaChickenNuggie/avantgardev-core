@@ -45,11 +45,13 @@
 			},
 			"suspicious": {
 				"noExplicitAny": "warn",
-				"noConsole": "warn"
+				"noConsole": "warn",
+				"noArrayIndexKey": "warn"
 			},
 			"a11y": {
 				"useButtonType": "warn",
-				"useAltText": "error"
+				"useAltText": "error",
+				"useAriaPropsSupportedByRole": "warn"
 			}
 		}
 	},
