@@ -1,4 +1,6 @@
 ---
+import CursorWrapper from "../components/CursorWrapper";
+
 interface Props {
 	description?: string;
 }
@@ -42,6 +44,7 @@ const {
 		<title>Avantgardev</title>
 	</head>
 	<body>
+		<CursorWrapper client:only="react" />
 		<slot />
 	</body>
 </html>
