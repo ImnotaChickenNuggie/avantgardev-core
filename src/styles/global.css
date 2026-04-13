@@ -28,9 +28,9 @@
 	--color-danger-muted: rgb(220 38 38 / 0.1);
 
 	/* ─── FUENTES ────────────────────────────────────────────── */
-	--font-heading: "Vanregis", "Arial Black", sans-serif;
-	--font-sans: "Space Grotesk", sans-serif;
-	--font-mono: "JetBrains Mono", "Courier New", monospace;
+	--font-heading: "Vanregis", "Arial Black", system-ui, -apple-system, sans-serif;
+	--font-sans: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Monaco, "Courier New", monospace;
 
 	/* ─── ESCALA TIPOGRAFICA EXTRA ───────────────────────────── */
 	--text-2xs: 0.625rem;
