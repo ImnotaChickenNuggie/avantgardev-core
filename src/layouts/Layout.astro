@@ -21,6 +21,7 @@ const {
 		<meta name="author" content="Avantgardev" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="preload" href="/fonts/vanregis.woff2" as="font" type="font/woff2" crossorigin />
 
 		<!-- Google Fonts - Optimized loading -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,7 +69,7 @@ const {
 	</script>
 	</head>
 	<body>
-		<SmoothScroll client:only="react" />
+		<SmoothScroll client:idle />
 		<CursorWrapper client:only="react" />
 		<slot />
 	</body>
