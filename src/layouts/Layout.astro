@@ -1,5 +1,6 @@
 ---
 import CursorWrapper from "../components/CursorWrapper";
+import SmoothScroll from "../components/SmoothScroll";
 
 interface Props {
 	description?: string;
@@ -67,6 +68,7 @@ const {
 	</script>
 	</head>
 	<body>
+		<SmoothScroll client:only="react" />
 		<CursorWrapper client:only="react" />
 		<slot />
 	</body>
