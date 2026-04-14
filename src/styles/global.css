@@ -160,6 +160,11 @@ body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	font-family: var(--font-sans);
+	cursor: none;
+}
+
+* {
+	cursor: none !important;
 }
 
 /* ─── Reducir motion para accesibilidad ──────────────────────── */
