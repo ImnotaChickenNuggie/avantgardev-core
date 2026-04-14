@@ -28,9 +28,9 @@
 	--color-danger-muted: rgb(220 38 38 / 0.1);
 
 	/* ─── FUENTES ────────────────────────────────────────────── */
-	--font-heading: "Vanregis", "Arial Black", sans-serif;
-	--font-sans: "Space Grotesk", sans-serif;
-	--font-mono: "JetBrains Mono", "Courier New", monospace;
+	--font-heading: "Vanregis", "Arial Black", system-ui, -apple-system, sans-serif;
+	--font-sans: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Monaco, "Courier New", monospace;
 
 	/* ─── ESCALA TIPOGRAFICA EXTRA ───────────────────────────── */
 	--text-2xs: 0.625rem;
@@ -178,6 +178,19 @@ body {
 	src: url("/fonts/vanregis.woff2") format("woff2");
 	font-weight: 700 900;
 	font-display: swap;
+}
+
+/* ─── Screen reader only (SEO + Accessibility) ───────────────── */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }
 
 /* ─── Seleccion de texto ─────────────────────────────────────── */

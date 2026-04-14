@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, useEffect } from "react";
 
 declare global {
 	interface Window {
@@ -16,6 +16,21 @@ type FormStatus = "idle" | "sending" | "success" | "error";
 export default function ContactForm() {
 	const [status, setStatus] = useState<FormStatus>("idle");
 	const [errorMsg, setErrorMsg] = useState("");
+
+	useEffect(() => {
+		const script = document.createElement("script");
+		script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+		script.async = true;
+		script.defer = true;
+		document.head.appendChild(script);
+
+		return () => {
+			const existingScript = document.querySelector(`script[src*="recaptcha"]`);
+			if (existingScript) {
+				existingScript.remove();
+			}
+		};
+	}, []);
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
