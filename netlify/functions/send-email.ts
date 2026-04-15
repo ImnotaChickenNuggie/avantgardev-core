@@ -106,7 +106,7 @@ export default async (req: Request, _context: Context) => {
 						<p style="margin: 0; white-space: pre-wrap;">${message}</p>
 					</div>
 					<p style="margin-top: 32px; font-size: 12px; color: #9490a8;">
-						Enviado desde el formulario de contacto de avantgardev.com
+						Enviado desde el formulario de contacto de avantgardev.com.mx
 					</p>
 				</div>
 			`,
