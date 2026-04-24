@@ -160,11 +160,17 @@ body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	font-family: var(--font-sans);
-	cursor: none;
 }
 
-* {
-	cursor: none !important;
+/* Hide default cursor only on desktop devices with hover capability */
+@media (hover: hover) and (pointer: fine) {
+	body {
+		cursor: none;
+	}
+
+	* {
+		cursor: none !important;
+	}
 }
 
 /* ─── Reducir motion para accesibilidad ──────────────────────── */
