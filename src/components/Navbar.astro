@@ -5,6 +5,8 @@ import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import MobileMenu from "./MobileMenu";
+// biome-ignore lint/correctness/noUnusedImports: used in template
+import ThemeToggle from "./ThemeToggle";
 ---
 
 <header
@@ -12,7 +14,7 @@ import MobileMenu from "./MobileMenu";
 >
 	<nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 		<a href="/" class="flex flex-row space-x-2 items-center">
-			<Image src={logo} alt="Avantgardev" height={36} quality="high" />
+			<Image src={logo} alt="Avantgardev" height={36} quality="high" class="dark:invert-0 invert" />
 			<span class="font-heading text-2xl">AVANTGARDEV</span>
 		</a>
 
@@ -51,12 +53,15 @@ import MobileMenu from "./MobileMenu";
 			</li>
 		</ul>
 
-		<a
-			href="#contacto"
-			class="hidden rounded-lg border border-neon/40 px-5 py-2 text-sm font-semibold tracking-widest text-neon uppercase transition-all hover:border-neon hover:bg-neon/10 hover:shadow-glow-neon md:inline-flex"
-		>
-			CONECTEMOS
-		</a>
+		<div class="hidden items-center gap-3 md:flex">
+			<ThemeToggle client:load />
+			<a
+				href="#contacto"
+				class="rounded-lg border border-neon/40 px-5 py-2 text-sm font-semibold tracking-widest text-neon uppercase transition-all hover:border-neon hover:bg-neon/10 hover:shadow-glow-neon"
+			>
+				CONECTEMOS
+			</a>
+		</div>
 	</nav>
 </header>
 
