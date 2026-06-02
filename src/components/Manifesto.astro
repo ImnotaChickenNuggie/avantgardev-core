@@ -23,11 +23,11 @@ const values = [
 	{
 		title: "Profesionalismo al mando",
 		description:
-			"vantgardev es un conjunto de profesionales visionarios que buscan generar soluciones listas para crecer, no “vibe coding” listo en 5 minutos para que termines más de 6 meses reestructurando tu proyecto después.",
+			"Avantgardev es un conjunto de profesionales visionarios que buscan generar soluciones listas para crecer, no “vibe coding” listo en 5 minutos para que termines más de 6 meses reestructurando tu proyecto después.",
 	},
 	{
 		title: "Ingeniería con Alma",
-		description: 'Codeamos con el cerebro y disenamos con el alma; no "vibramos" con el codigo.',
+		description: 'Codeamos con el cerebro y diseñamos con el alma; no "vibramos" con el codigo.',
 	},
 ];
 ---
@@ -36,7 +36,7 @@ const values = [
 	id='manifiesto'
 	class='relative py-26 lg:py-38'
 >
-	<div class='mx-auto max-w-5xl px-6'>
+	<div class='mx-auto max-w-5xl px-6 reveal'>
 		<div class='mb-18 text-center'>
 			<p
 				class='mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase'
@@ -53,7 +53,7 @@ const values = [
 		<div class='space-y-0'>
 			{
 				values.map((value, i) => (
-					<article class='group border-t border-border/40 py-10 transition-colors last:border-b hover:border-neon/20 lg:py-14'>
+					<article class='group border-t border-border/40 py-10 transition-all duration-300 last:border-b hover:border-neon/20 lg:py-14'>
 						<div class='flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8 lg:gap-12'>
 							<span class='font-heading text-5xl font-black text-border/60 transition-colors group-hover:text-neon/30 lg:text-6xl'>
 								{String(i + 1).padStart(2, '0')}
