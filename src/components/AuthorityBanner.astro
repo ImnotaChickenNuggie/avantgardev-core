@@ -20,12 +20,12 @@ const brands = [
 	</div>
 
 	<!-- Marquee -->
-	<div class="relative">
+	<div class="group relative">
 		<!-- Fade edges -->
 		<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-surface to-transparent" />
 		<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-surface to-transparent" />
 
-		<div class="flex animate-marquee items-center gap-16">
+		<div class="flex animate-marquee items-center gap-16 group-hover:paused">
 			{
 				[...Array(6)].map(() => (
 					<div class="flex shrink-0 items-center gap-16">
