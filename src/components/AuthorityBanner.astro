@@ -1,5 +1,13 @@
 ---
+import capitalHumano from "../assets/brands/capital-humano.png";
+import magnapelle from "../assets/brands/magnapelle.png";
+import vazza from "../assets/brands/vazza.png";
 
+const brands = [
+	{ src: capitalHumano, alt: "Capital Humano" },
+	{ src: magnapelle, alt: "Magnapelle" },
+	{ src: vazza, alt: "Vazza" },
+];
 ---
 
 <section class="relative overflow-hidden border-y border-border/30 bg-surface py-16">
@@ -19,15 +27,17 @@
 
 		<div class="flex animate-marquee items-center gap-16">
 			{
-				[...Array(2)].map(() => (
+				[...Array(6)].map(() => (
 					<div class="flex shrink-0 items-center gap-16">
-						{["STARTUP ALPHA", "BRAND NOVA", "TECH VERTEX", "STUDIO ARC", "NEXUS CO", "FORGE LAB"].map(
-							(name) => (
-								<span class="whitespace-nowrap font-heading text-2xl font-bold tracking-wider text-disabled/40 uppercase select-none">
-									{name}
-								</span>
-							),
-						)}
+						{brands.map(({ src, alt }) => (
+							<img
+								src={src.src}
+								alt={alt}
+								width={120}
+								height={72}
+								class="h-12 w-[120px] object-contain opacity-40 select-none grayscale"
+							/>
+						))}
 					</div>
 				))
 			}
