@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import MobileThemeToggle from "./MobileThemeToggle";
 import { StaggeredMenu } from "./StaggeredMenu";
 
 const menuItems = [
@@ -29,19 +31,34 @@ const menuItems = [
 ];
 
 export default function MobileMenu() {
+	const [isDark, setIsDark] = useState(true);
+
+	useEffect(() => {
+		const check = () => setIsDark(document.documentElement.classList.contains("dark"));
+		check();
+
+		const observer = new MutationObserver(check);
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+		return () => observer.disconnect();
+	}, []);
+
 	return (
 		<StaggeredMenu
 			position="right"
 			items={menuItems}
 			displaySocials={false}
 			displayItemNumbering={true}
-			menuButtonColor="#f7ebec"
-			openMenuButtonColor="#070711"
+			menuButtonColor={isDark ? "#f7ebec" : "#1a1128"}
+			openMenuButtonColor={isDark ? "#070711" : "#faf9fc"}
 			changeMenuColorOnOpen={true}
-			colors={["#7c3aed", "#070711"]}
+			colors={isDark ? ["#7c3aed", "#070711"] : ["#6d28d9", "#faf9fc"]}
 			logoUrl="/favicon.svg"
-			accentColor="#7c3aed"
+			accentColor={isDark ? "#7c3aed" : "#6d28d9"}
 			isFixed={true}
+			panelFooter={<MobileThemeToggle />}
 		/>
 	);
 }

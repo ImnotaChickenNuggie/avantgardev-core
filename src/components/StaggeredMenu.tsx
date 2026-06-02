@@ -27,6 +27,7 @@ export interface StaggeredMenuProps {
 	closeOnClickAway?: boolean;
 	onMenuOpen?: () => void;
 	onMenuClose?: () => void;
+	panelFooter?: React.ReactNode;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
@@ -46,6 +47,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 	closeOnClickAway = true,
 	onMenuOpen,
 	onMenuClose,
+	panelFooter,
 }: StaggeredMenuProps) => {
 	const [open, setOpen] = useState(false);
 	const openRef = useRef(false);
@@ -561,6 +563,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 							</div>
 						)}
 					</div>
+					{panelFooter && <div className="sm-panel-footer mt-auto pt-6">{panelFooter}</div>}
 				</aside>
 			</div>
 

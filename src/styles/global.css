@@ -9,24 +9,6 @@
    ══════════════════════════════════════════════════════════════ */
 
 @theme {
-	/* ─── COLORES BASE ───────────────────────────────────────── */
-	--color-bg: #070711;
-	--color-surface: #0e0e1c;
-	--color-surface-2: #16162a;
-	--color-text: #f7ebec;
-	--color-muted: #9490a8;
-	--color-disabled: #4a4860;
-	--color-subtle: #141428;
-
-	/* ─── COLORES DE ACENTO ──────────────────────────────────── */
-	--color-primary: #7c3aed;
-	--color-primary-hover: #8b5cf6;
-	--color-primary-muted: rgb(124 58 237 / 0.1);
-	--color-neon: #39ff14;
-	--color-neon-muted: rgb(57 255 20 / 0.1);
-	--color-danger: #dc2626;
-	--color-danger-muted: rgb(220 38 38 / 0.1);
-
 	/* ─── FUENTES ────────────────────────────────────────────── */
 	--font-heading: "Vanregis", "Arial Black", system-ui, -apple-system, sans-serif;
 	--font-sans:
@@ -52,14 +34,6 @@
 	--spacing-38: 9.5rem;
 	--spacing-42: 10.5rem;
 
-	/* ─── SOMBRAS / GLOWS ────────────────────────────────────── */
-	--shadow-glow-primary: 0 0 20px rgb(124 58 237 / 0.35);
-	--shadow-glow-primary-lg: 0 0 40px rgb(124 58 237 / 0.25);
-	--shadow-glow-neon: 0 0 20px rgb(57 255 20 / 0.4);
-	--shadow-glow-neon-lg: 0 0 60px rgb(57 255 20 / 0.2);
-	--shadow-glow-danger: 0 0 20px rgb(220 38 38 / 0.35);
-	--shadow-glow-subtle: 0 0 30px rgb(247 235 236 / 0.04);
-
 	/* ─── EASINGS ────────────────────────────────────────────── */
 	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -69,6 +43,30 @@
 	--animate-slide-in-right: slide-in-right 0.4s ease-out both;
 	--animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
 	--animate-marquee: marquee 30s linear infinite;
+}
+
+/* ─── THEME COLORS (dynamic via CSS vars) ────────────────────── */
+@theme inline {
+	--color-bg: var(--ag-bg);
+	--color-surface: var(--ag-surface);
+	--color-surface-2: var(--ag-surface-2);
+	--color-text: var(--ag-text);
+	--color-muted: var(--ag-muted);
+	--color-disabled: var(--ag-disabled);
+	--color-subtle: var(--ag-subtle);
+	--color-primary: var(--ag-primary);
+	--color-primary-hover: var(--ag-primary-hover);
+	--color-primary-muted: var(--ag-primary-muted);
+	--color-neon: var(--ag-neon);
+	--color-neon-muted: var(--ag-neon-muted);
+	--color-danger: var(--ag-danger);
+	--color-danger-muted: var(--ag-danger-muted);
+	--shadow-glow-primary: var(--ag-glow-primary);
+	--shadow-glow-primary-lg: var(--ag-glow-primary-lg);
+	--shadow-glow-neon: var(--ag-glow-neon);
+	--shadow-glow-neon-lg: var(--ag-glow-neon-lg);
+	--shadow-glow-danger: var(--ag-glow-danger);
+	--shadow-glow-subtle: var(--ag-glow-subtle);
 }
 
 /* ─── KEYFRAMES ──────────────────────────────────────────────── */
@@ -108,10 +106,10 @@
 @keyframes glow-pulse {
 	0%,
 	100% {
-		box-shadow: 0 0 20px rgb(57 255 20 / 0.2);
+		box-shadow: 0 0 20px color-mix(in srgb, var(--ag-neon) 20%, transparent);
 	}
 	50% {
-		box-shadow: 0 0 40px rgb(57 255 20 / 0.5);
+		box-shadow: 0 0 40px color-mix(in srgb, var(--ag-neon) 50%, transparent);
 	}
 }
 
@@ -129,7 +127,83 @@
    ══════════════════════════════════════════════════════════════ */
 
 :root {
+	--radius: 0.5rem;
+}
+
+/* ─── LIGHT MODE (default when .dark is removed) ─────────────── */
+:root:not(.dark) {
+	color-scheme: light;
+
+	/* Avantgardev tokens — Light */
+	--ag-bg: #faf9fc;
+	--ag-surface: #f0eef5;
+	--ag-surface-2: #e6e3f0;
+	--ag-text: #1a1128;
+	--ag-muted: #6b6580;
+	--ag-disabled: #b0abbd;
+	--ag-subtle: #f5f3fa;
+	--ag-primary: #6d28d9;
+	--ag-primary-hover: #5b21b6;
+	--ag-primary-muted: rgba(109, 40, 217, 0.08);
+	--ag-neon: #16a34a;
+	--ag-neon-muted: rgba(22, 163, 74, 0.08);
+	--ag-danger: #dc2626;
+	--ag-danger-muted: rgba(220, 38, 38, 0.08);
+	--ag-glow-primary: 0 4px 16px rgba(109, 40, 217, 0.15);
+	--ag-glow-primary-lg: 0 8px 32px rgba(109, 40, 217, 0.1);
+	--ag-glow-neon: 0 4px 16px rgba(22, 163, 74, 0.15);
+	--ag-glow-neon-lg: 0 8px 32px rgba(22, 163, 74, 0.1);
+	--ag-glow-danger: 0 4px 16px rgba(220, 38, 38, 0.15);
+	--ag-glow-subtle: 0 2px 12px rgba(26, 17, 40, 0.06);
+
+	/* shadcn tokens — Light */
+	--background: #faf9fc;
+	--foreground: #1a1128;
+	--card: #f0eef5;
+	--card-foreground: #1a1128;
+	--popover: #ffffff;
+	--popover-foreground: #1a1128;
+	--primary: #6d28d9;
+	--primary-foreground: #ffffff;
+	--secondary: #e6e3f0;
+	--secondary-foreground: #1a1128;
+	--muted: #f0eef5;
+	--muted-foreground: #6b6580;
+	--accent: #f5f3fa;
+	--accent-foreground: #1a1128;
+	--destructive: #dc2626;
+	--border: #e2dff0;
+	--input: #e2dff0;
+	--ring: #6d28d9;
+}
+
+/* ─── DARK MODE ──────────────────────────────────────────────── */
+.dark {
 	color-scheme: dark;
+
+	/* Avantgardev tokens — Dark */
+	--ag-bg: #070711;
+	--ag-surface: #0e0e1c;
+	--ag-surface-2: #16162a;
+	--ag-text: #f7ebec;
+	--ag-muted: #9490a8;
+	--ag-disabled: #4a4860;
+	--ag-subtle: #141428;
+	--ag-primary: #7c3aed;
+	--ag-primary-hover: #8b5cf6;
+	--ag-primary-muted: rgba(124, 58, 237, 0.1);
+	--ag-neon: #39ff14;
+	--ag-neon-muted: rgba(57, 255, 20, 0.1);
+	--ag-danger: #dc2626;
+	--ag-danger-muted: rgba(220, 38, 38, 0.1);
+	--ag-glow-primary: 0 0 20px rgba(124, 58, 237, 0.35);
+	--ag-glow-primary-lg: 0 0 40px rgba(124, 58, 237, 0.25);
+	--ag-glow-neon: 0 0 20px rgba(57, 255, 20, 0.4);
+	--ag-glow-neon-lg: 0 0 60px rgba(57, 255, 20, 0.2);
+	--ag-glow-danger: 0 0 20px rgba(220, 38, 38, 0.35);
+	--ag-glow-subtle: 0 0 30px rgba(247, 235, 236, 0.04);
+
+	/* shadcn tokens — Dark */
 	--background: #070711;
 	--foreground: #f7ebec;
 	--card: #0e0e1c;
@@ -148,7 +222,6 @@
 	--border: #1f1f38;
 	--input: #1f1f38;
 	--ring: #7c3aed;
-	--radius: 0.5rem;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -163,6 +236,20 @@ body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	font-family: var(--font-sans);
+}
+
+/* ─── Theme transition (applied via JS class to avoid initial flash) ─── */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+	transition:
+		background-color 0.4s ease,
+		border-color 0.4s ease,
+		color 0.3s ease,
+		box-shadow 0.4s ease,
+		opacity 0.3s ease,
+		filter 0.3s ease !important;
 }
 
 /* Hide default cursor only on desktop devices with hover capability */
@@ -224,7 +311,7 @@ body {
 /* ─── Seleccion de texto ─────────────────────────────────────── */
 ::selection {
 	background-color: rgb(124 58 237 / 0.3);
-	color: #f7ebec;
+	color: var(--ag-text);
 }
 
 /* ─── Scrollbar personalizada ────────────────────────────────── */
@@ -233,16 +320,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-	background: #070711;
+	background: var(--ag-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #1f1f38;
+	background: var(--border);
 	border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #7c3aed;
+	background: var(--ag-primary);
 }
 
 /* ─── shadcn theme inline — map to Avantgardev tokens ────────── */

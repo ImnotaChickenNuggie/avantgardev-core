@@ -12,9 +12,18 @@ const {
 ---
 
 <!doctype html>
-<html lang="es-MX" class="dark">
+<html lang="es-MX">
 	<head>
 		<meta charset="utf-8" />
+		<!-- Prevent flash: apply theme before paint -->
+		<script is:inline>
+			(function() {
+				var t = localStorage.getItem('theme');
+				if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="keywords" content="avantgardev, desarrollo web, diseño web, innovación, tecnología, seo, marketing, diseño, ui, ux, web development, web design" />

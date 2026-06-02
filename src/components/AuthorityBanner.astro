@@ -3,7 +3,7 @@ import capitalHumano from "../assets/brands/capital-humano.png";
 import magnapelle from "../assets/brands/magnapelle.png";
 import vazza from "../assets/brands/vazza.png";
 
-const brands = [
+const _brands = [
 	{ src: capitalHumano, alt: "Capital Humano" },
 	{ src: magnapelle, alt: "Magnapelle" },
 	{ src: vazza, alt: "Vazza" },
@@ -29,13 +29,13 @@ const brands = [
 			{
 				[...Array(6)].map(() => (
 					<div class="flex shrink-0 items-center gap-16">
-						{brands.map(({ src, alt }) => (
+						{_brands.map(({ src, alt }) => (
 							<img
 								src={src.src}
 								alt={alt}
 								width={120}
 								height={72}
-								class="h-12 w-[120px] object-contain opacity-40 select-none grayscale"
+								class="h-12 w-[120px] object-contain select-none grayscale dark:opacity-40 dark:invert-0 opacity-60 invert"
 							/>
 						))}
 					</div>

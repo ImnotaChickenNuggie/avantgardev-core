@@ -1,4 +1,4 @@
-import { type FormEvent, useState, useEffect } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 
 declare global {
 	interface Window {
@@ -159,7 +159,7 @@ export default function ContactForm() {
 			<button
 				type="submit"
 				disabled={status === "sending"}
-				className="group w-full rounded-lg bg-neon px-8 py-4 text-sm font-bold tracking-widest text-bg uppercase transition-all hover:shadow-glow-neon active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+				className="group w-full rounded-lg bg-neon px-8 py-4 text-sm font-bold tracking-widest uppercase transition-all hover:shadow-glow-neon active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed dark:text-bg text-white"
 			>
 				{status === "sending" ? "Enviando..." : "Inicia la transformación"}
 			</button>
