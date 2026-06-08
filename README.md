@@ -41,7 +41,7 @@ Sitio web oficial de **Avantgardev** — construido con Astro, React y Tailwind 
 ## Requisitos previos
 
 - **Node.js** >= 22.12.0
-- **npm** (incluido con Node)
+- **pnpm** (instalación: `npm install -g pnpm`)
 
 ## Instalación
 
@@ -51,7 +51,7 @@ git clone https://github.com/tu-usuario/avantgardev.git
 cd avantgardev
 
 # Instalar dependencias
-npm install
+pnpm install
 ```
 
 ## Variables de entorno
@@ -67,12 +67,12 @@ RESEND_API_KEY=tu_api_key
 
 | Comando | Descripción |
 |:--|:--|
-| `npm run dev` | Inicia el servidor de desarrollo en `localhost:4321` |
-| `npm run build` | Genera el sitio para producción en `./dist/` |
-| `npm run preview` | Previsualiza el build localmente |
-| `npm run lint` | Ejecuta Biome para verificar el código |
-| `npm run lint:fix` | Corrige problemas de lint automáticamente |
-| `npm run format` | Formatea el código con Biome |
+| `pnpm dev` | Inicia el servidor de desarrollo en `localhost:4321` |
+| `pnpm build` | Genera el sitio para producción en `./dist/` |
+| `pnpm preview` | Previsualiza el build localmente |
+| `pnpm lint` | Ejecuta Biome para verificar el código |
+| `pnpm lint:fix` | Corrige problemas de lint automáticamente |
+| `pnpm format` | Formatea el código con Biome |
 
 ## Estructura del proyecto
 
