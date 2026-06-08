@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logo.png" alt="Avantgardev" width="120" />
+  <img src="public/logo.webp" alt="Avantgardev" width="120" />
 </p>
 
 <h1 align="center">Avantgardev</h1>

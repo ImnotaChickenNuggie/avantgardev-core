@@ -1,41 +1,53 @@
 ---
-import capitalHumano from "../assets/brands/capital-humano.png";
-import magnapelle from "../assets/brands/magnapelle.png";
-import vazza from "../assets/brands/vazza.png";
+import amanal from "../assets/brands/amanal.webp";
+import capitalHumano from "../assets/brands/capital-humano.webp";
+import magnapelle from "../assets/brands/magnapelle.webp";
+import vazza from "../assets/brands/vazza.webp";
 
 const _brands = [
 	{ src: capitalHumano, alt: "Capital Humano" },
+	{ src: amanal, alt: "Amanal" },
 	{ src: magnapelle, alt: "Magnapelle" },
 	{ src: vazza, alt: "Vazza" },
 ];
 ---
 
-<section class="relative overflow-hidden border-y border-border/30 bg-surface py-16">
-	<div class="mx-auto max-w-7xl px-6 reveal">
+<section
+	class='relative overflow-hidden border-y border-border/30 bg-surface py-16'
+>
+	<div class='mx-auto max-w-7xl px-6 reveal'>
 		<p
-			class="mb-10 text-center font-mono text-xs font-medium tracking-[0.3em] text-disabled uppercase"
+			class='mb-10 text-center font-mono text-xs font-medium tracking-[0.3em] text-disabled uppercase'
 		>
 			Ideas transformadas
 		</p>
 	</div>
 
 	<!-- Marquee -->
-	<div class="group relative">
+	<div class='group relative'>
 		<!-- Fade edges -->
-		<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-surface to-transparent" />
-		<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-surface to-transparent" />
+		<div
+			class='pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-surface to-transparent'
+		>
+		</div>
+		<div
+			class='pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-surface to-transparent'
+		>
+		</div>
 
-		<div class="flex animate-marquee items-center gap-16 group-hover:paused">
+		<div
+			class='flex animate-marquee items-center gap-16 group-hover:paused'
+		>
 			{
 				[...Array(6)].map(() => (
-					<div class="flex shrink-0 items-center gap-16">
+					<div class='flex shrink-0 items-center gap-16'>
 						{_brands.map(({ src, alt }) => (
 							<img
 								src={src.src}
 								alt={alt}
 								width={120}
 								height={72}
-								class="h-12 w-[120px] object-contain select-none grayscale dark:opacity-40 dark:invert-0 opacity-60 invert"
+								class='h-12 w-[120px] object-contain select-none grayscale dark:opacity-40 dark:invert-0 opacity-60 invert'
 							/>
 						))}
 					</div>
