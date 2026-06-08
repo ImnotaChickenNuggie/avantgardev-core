@@ -1,0 +1,187 @@
+---
+const projects = [
+	{
+		title: "Vazza",
+		category: "E-commerce",
+		description:
+			"Plataforma de comercio electrónico con experiencia inmersiva de producto y checkout optimizado para conversión.",
+		tags: ["Next.js", "Stripe", "Tailwind CSS"],
+		accent: "neon" as const,
+		image: "/projects/vazza.webp",
+		href: "#",
+		featured: true,
+	},
+	{
+		title: "Capital Humano",
+		category: "Plataforma Web",
+		description: "Sistema integral de gestión de talento con dashboards analíticos en tiempo real.",
+		tags: ["React", "Node.js", "PostgreSQL"],
+		accent: "primary" as const,
+		image: "/projects/capital-humano.webp",
+		href: "#",
+		featured: false,
+	},
+	{
+		title: "Magnapelle",
+		category: "Sitio Corporativo",
+		description:
+			"Sitio web con enfoque en storytelling visual y animaciones cinematográficas para marca premium.",
+		tags: ["Astro", "GSAP", "Three.js"],
+		accent: "neon" as const,
+		image: "/projects/magnapelle.webp",
+		href: "#",
+		featured: false,
+	},
+	{
+		title: "Amanal",
+		category: "Landing Page",
+		description:
+			"Landing de alto impacto con micro-interacciones y scroll narrativo para lanzamiento de producto.",
+		tags: ["Astro", "Tailwind CSS", "Lenis"],
+		accent: "primary" as const,
+		image: "/projects/amanal.webp",
+		href: "#",
+		featured: true,
+	},
+];
+---
+
+<section id="proyectos" class="relative py-26 lg:py-38">
+	<!-- Background accent -->
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(124,58,237,0.04),transparent_60%)]"
+	/>
+
+	<div class="relative mx-auto max-w-7xl px-6">
+		<!-- Header -->
+		<div class="mb-18 reveal">
+			<div class="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
+				<div>
+					<p
+						class="mb-4 font-mono text-xs font-medium tracking-[0.3em] text-primary uppercase"
+					>
+						Proyectos seleccionados
+					</p>
+					<h2
+						class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl"
+					>
+						TRABAJO QUE<br />
+						<span class="text-neon">HABLA POR SI SOLO</span>
+					</h2>
+				</div>
+				<p class="max-w-md text-base leading-relaxed text-muted lg:text-right">
+					Cada proyecto es una historia de colaboración, innovación y obsesión por el detalle.
+				</p>
+			</div>
+		</div>
+
+		<!-- Projects Grid — asymmetric editorial layout -->
+		<div class="grid gap-6 lg:grid-cols-12 lg:gap-8">
+			{
+				projects.map((project, i) => {
+					const isFeatured = project.featured;
+					const colSpan = isFeatured ? "lg:col-span-7" : "lg:col-span-5";
+					const isNeon = project.accent === "neon";
+
+					return (
+						<article
+							class:list={[
+								"group reveal relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-500",
+								colSpan,
+								isNeon
+									? "border-neon/8 hover:border-neon/25 hover:shadow-glow-neon"
+									: "border-primary/8 hover:border-primary/25 hover:shadow-glow-primary",
+							]}
+						>
+							{/* Image area */}
+							<div class="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+								{/* Gradient placeholder — replace with <Image> when assets are ready */}
+								<div
+									class:list={[
+										"absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105",
+										isNeon
+											? "bg-[linear-gradient(135deg,rgba(57,255,20,0.08)_0%,rgba(14,14,28,0.6)_50%,rgba(124,58,237,0.06)_100%)]"
+											: "bg-[linear-gradient(135deg,rgba(124,58,237,0.1)_0%,rgba(14,14,28,0.6)_50%,rgba(57,255,20,0.06)_100%)]",
+									]}
+								/>
+
+								{/* Grid pattern overlay */}
+								<div class="absolute inset-0 opacity-[0.03] bg-[repeating-linear-gradient(0deg,transparent,transparent_39px,var(--ag-text)_39px,var(--ag-text)_40px),repeating-linear-gradient(90deg,transparent,transparent_39px,var(--ag-text)_39px,var(--ag-text)_40px)]" />
+
+								{/* Category badge */}
+								<div class="absolute top-5 left-5 z-10">
+									<span
+										class:list={[
+											"inline-block rounded-full border px-3 py-1 font-mono text-2xs font-medium tracking-[0.2em] uppercase backdrop-blur-md",
+											isNeon
+												? "border-neon/20 bg-neon/10 text-neon"
+												: "border-primary/20 bg-primary/10 text-primary",
+										]}
+									>
+										{project.category}
+									</span>
+								</div>
+
+								{/* Hover reveal arrow */}
+								<div class="absolute right-5 bottom-5 z-10 flex size-12 translate-y-4 items-center justify-center rounded-full border border-text/10 bg-bg/80 opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="size-5 -rotate-45 text-text transition-transform duration-300 group-hover:rotate-0"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M13 7l5 5m0 0l-5 5m5-5H6"
+										/>
+									</svg>
+								</div>
+
+								{/* Project number watermark */}
+								<span
+									class:list={[
+										"pointer-events-none absolute -right-3 -bottom-6 font-heading text-[10rem] font-black leading-none select-none",
+										isNeon ? "text-neon/[0.04]" : "text-primary/[0.05]",
+									]}
+								>
+									{String(i + 1).padStart(2, "0")}
+								</span>
+							</div>
+
+							{/* Content */}
+							<div class="flex flex-1 flex-col justify-between bg-bg/50 p-7 lg:p-9">
+								<div>
+									<h3 class="mb-2 text-2xl font-bold tracking-tight text-text transition-colors duration-300 group-hover:text-text lg:text-3xl">
+										{project.title}
+									</h3>
+									<p class="mb-5 text-sm leading-relaxed text-muted lg:text-base">
+										{project.description}
+									</p>
+								</div>
+
+								{/* Tags */}
+								<div class="flex flex-wrap gap-2">
+									{project.tags.map((tag) => (
+										<span class="rounded-md border border-border/50 bg-surface/50 px-2.5 py-1 font-mono text-2xs font-medium tracking-wider text-disabled uppercase transition-colors group-hover:border-border group-hover:text-muted">
+											{tag}
+										</span>
+									))}
+								</div>
+							</div>
+
+							{/* Full card link overlay */}
+							<a
+								href={project.href}
+								class="absolute inset-0 z-20"
+								aria-label={`Ver proyecto ${project.title}`}
+							/>
+						</article>
+					);
+				})
+			}
+		</div>
+	</div>
+</section>
