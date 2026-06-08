@@ -1,12 +1,15 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import CursorWrapper from "../components/CursorWrapper";
 import SmoothScroll from "../components/SmoothScroll";
 
 interface Props {
+	title?: string;
 	description?: string;
 }
 
 const {
+	title = "Avantgardev | Desarrollo, Marketing y Diseño Web a la medida para tu negocio | México",
 	description = "Transformamos ideas en realidades. Colectivo disruptivo de diseño y desarrollo web.",
 } = Astro.props;
 ---
@@ -48,7 +51,8 @@ const {
 			/>
 		</noscript>
 
-		<title>Avantgardev | Desarrollo, Marketing y Diseño Web a la medida para tu negocio | México</title>
+		<ClientRouter />
+		<title>{title}</title>
 	<link rel="canonical" href={Astro.url.href} />
 
 	<!-- Open Graph -->
@@ -88,7 +92,7 @@ const {
 		}
 	</script>
 	<script is:inline>
-		document.addEventListener('DOMContentLoaded', function () {
+		function initRevealObserver() {
 			var observer = new IntersectionObserver(
 				function (entries) {
 					entries.forEach(function (entry) {
@@ -100,8 +104,37 @@ const {
 				},
 				{ threshold: 0.1 }
 			);
-			document.querySelectorAll('.reveal').forEach(function (el) {
+			document.querySelectorAll('.reveal:not(.is-visible)').forEach(function (el) {
 				observer.observe(el);
+			});
+		}
+		document.addEventListener('DOMContentLoaded', initRevealObserver);
+		document.addEventListener('astro:page-load', initRevealObserver);
+
+		/* ── View Transition: instant hash scroll ─────────────────
+		   Prevents the visible smooth-scroll from top→hash after
+		   navigating back. Positions the new document at the hash
+		   target BEFORE the transition animation and Lenis mount. */
+		document.addEventListener('astro:before-swap', function (e) {
+			e.newDocument.documentElement.style.scrollBehavior = 'auto';
+			// Preserve theme on the incoming document to avoid light-mode flash
+			if (document.documentElement.classList.contains('dark')) {
+				e.newDocument.documentElement.classList.add('dark');
+			} else {
+				e.newDocument.documentElement.classList.remove('dark');
+			}
+		});
+		document.addEventListener('astro:after-swap', function () {
+			document.documentElement.style.scrollBehavior = 'auto';
+			var hash = window.location.hash;
+			if (hash) {
+				var target = document.querySelector(hash);
+				if (target) {
+					target.scrollIntoView({ behavior: 'instant', block: 'start' });
+				}
+			}
+			requestAnimationFrame(function () {
+				document.documentElement.style.scrollBehavior = '';
 			});
 		});
 	</script>
