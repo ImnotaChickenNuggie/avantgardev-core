@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { CustomCursor } from "cursor-style";
+import { useEffect, useState } from "react";
 
 export default function CursorWrapper() {
 	const [isDesktop, setIsDesktop] = useState(false);
