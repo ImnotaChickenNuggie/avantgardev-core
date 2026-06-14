@@ -4,6 +4,11 @@ import { StaggeredMenu } from "./StaggeredMenu";
 
 const menuItems = [
 	{
+		label: "Servicios",
+		ariaLabel: "Ver servicios",
+		link: "#servicios",
+	},
+	{
 		label: "Manifiesto",
 		ariaLabel: "Ir a manifiesto",
 		link: "#manifiesto",
