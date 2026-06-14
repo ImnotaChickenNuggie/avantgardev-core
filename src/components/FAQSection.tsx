@@ -12,9 +12,9 @@ const faqs = [
 			'No, es un apoyo. Rechazamos las "soluciones milagrosas" sin base técnica. La IA es una herramienta poderosa cuando se usa con criterio y conocimiento, no un reemplazo de la ingeniería real.',
 	},
 	{
-		question: "¿Solo se dedican al desarrollo web?",
+		question: "¿También hacen diseño, marketing digital y contenido?",
 		answer:
-			"Somos un estudio integral. Diseñamos logotipos, brandbooks, estrategia técnica y digital. El desarrollo web es nuestro fuerte, pero nuestra visión abarca todo el ecosistema digital de tu proyecto.",
+			"Sí, y no son servicios secundarios. Un sitio impecable sin tráfico ni identidad visual consistente no convierte. Ofrecemos diseño web y brandbook, estrategia de contenido, gestión de redes y campañas pagadas — todo conectado al mismo objetivo: que tu marca crezca.",
 	},
 	{
 		question: "¿Cuál es el precio?",

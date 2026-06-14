@@ -89,6 +89,30 @@ export const projects: Project[] = [
 		client: "Magnapelle",
 	},
 	{
+		slug: "nexo",
+		title: "Nexo",
+		category: "Identidad de Marca",
+		description:
+			"Sistema de identidad visual completo para startup fintech: logo, paleta, tipografía y brandbook ejecutivo.",
+		longDescription:
+			"Construimos desde cero el sistema de identidad visual de Nexo, una startup fintech que necesitaba proyectar confianza y modernidad. El resultado es una marca flexible que funciona desde una tarjeta de presentación hasta una app móvil.",
+		tags: ["Figma", "Brandbook", "Identidad Visual"],
+		accent: "neon",
+		image: "/projects/nexo.webp",
+		featured: false,
+		challenge:
+			"Nexo llegó sin nombre definido, sin colores, sin nada. Necesitaban una identidad que transmitiera solidez financiera sin caer en los clichés del sector: azules corporativos y tipografías genéricas.",
+		solution:
+			"Desarrollamos una identidad basada en el concepto de conexión y fluidez. Sistema cromático bicromático con verde eléctrico como acento, tipografía geométrica y un símbolo que funciona como ícono de app.",
+		results: [
+			"Sistema de marca usado en 3 rondas de inversión",
+			"Reconocimiento de marca del 78% en focus group",
+			"Brandbook de 64 páginas entregado en 3 semanas",
+		],
+		year: "2025",
+		client: "Nexo Fintech",
+	},
+	{
 		slug: "amanal",
 		title: "Amanal",
 		category: "Landing Page",
