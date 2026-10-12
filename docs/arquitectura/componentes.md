@@ -12,7 +12,7 @@
 Las directivas `client:*` van en el `.astro` que usa el componente, no dentro del `.tsx`.
 
 - Alias de rutas: `@/*` → `./src/*`.
-- Componentes shadcn/ui en `src/components/ui/` (actualmente `accordion.tsx`, `button.tsx`).
+- Componentes UI basados en Base UI en `src/components/ui/` (actualmente `accordion.tsx`).
 
 ## Assets
 

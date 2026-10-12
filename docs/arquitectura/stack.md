@@ -3,7 +3,7 @@
 - **Framework**: Astro 6 (sitio estático) con islas React 19 (`client:idle`, `client:only="react"`).
 - **Routing**: basado en archivos. Dos rutas: `/` (homepage) y `/proyecto/[slug]` (páginas de detalle dinámicas).
 - **Estilos**: Tailwind CSS v4 vía el plugin `@tailwindcss/vite`. No hay `tailwind.config`; todos los tokens se definen CSS-first en `src/styles/global.css` bajo `@theme`. Ver [sistema de diseño](../diseno/sistema-de-diseno.md).
-- **Componentes UI**: los componentes shadcn/ui viven en `src/components/ui/` y usan `class-variance-authority` + `clsx` + `tailwind-merge` (utilidad en `src/lib/utils.ts`).
+- **Componentes UI**: los componentes UI (Base UI) viven en `src/components/ui/` y usan `clsx` + `tailwind-merge` (utilidad en `src/lib/utils.ts`).
 - **Animaciones**: GSAP para animaciones de entrada/scroll; Lenis para smooth scroll (`SmoothScroll.tsx`); clase `.reveal` + IntersectionObserver para fade-ins al hacer scroll (configurado en `Layout.astro`).
 - **View Transitions**: `<ClientRouter />` de Astro (modo SPA) con `transition:name` en las tarjetas de proyecto para transiciones de elemento compartido entre lista y detalle.
 - **3D**: Three.js (usado en la sección Hero).
