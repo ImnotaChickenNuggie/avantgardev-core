@@ -13,7 +13,7 @@ Orden de secciones: **Navbar → Hero → AuthorityBanner → Services → Manif
 | Manifesto | `Manifesto.astro` | Filosofía/valores de la agencia |
 | Methodology | `Methodology.astro` | Pasos del proceso de trabajo |
 | Projects | `Projects.astro` | Grid editorial asimétrico de tarjetas que enlazan a `/proyecto/[slug]` |
-| FAQs | `FAQs.astro` + `FAQSection.tsx` | FAQ en acordeón (shadcn/ui accordion, isla React) |
+| FAQs | `FAQs.astro` + `FAQSection.tsx` | FAQ en acordeón (acordeón de Base UI, isla React) |
 | Contact | `Contact.astro` + `ContactForm.tsx` | Formulario de contacto conectado al endpoint de Resend |
 
 ## Detalle de proyecto (`src/pages/proyecto/[slug].astro`)
