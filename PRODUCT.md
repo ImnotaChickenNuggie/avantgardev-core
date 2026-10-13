@@ -21,14 +21,13 @@ Sitio estático Astro 7 + islas React, desplegado en Netlify, formulario de cont
 ## Capabilities and Constraints
 - Rutas: `/` y `/proyecto/[slug]` (Vazza, Capital Humano, Magnapelle, Nexo, Amanal), generadas desde `src/data/projects.ts`.
 - Hero con fondo ColorBends (shader Three.js) que debe conservarse intacto.
-- Etiquetas HUD del rediseño en español, centralizadas para traducirlas después.
 - Pendiente de decidir: traducción a inglés y estructura i18n.
 
 ## Brand Commitments
 - Nombre: Avantgardev; origen en el avant-garde artístico (arte en tiempos de crisis) llevado al siglo XXI.
 - Tipografía display Vanregis (autoalojada) se conserva: funciona tanto en cyberpunk como en Death Stranding.
 - Acentos: morado `#7C3AED` se conserva; el verde neón `#39FF14` sigue como acento secundario.
-- Mezcla estética pedida: HUD de Death Stranding (sin paisajes) + cyberpunk.
+- Mezcla estética pedida: Death Stranding (sin paisajes) + cyberpunk; se conserva la esencia original (morado, neón, glows, Vanregis).
 
 ## Evidence on Hand
 - Cinco casos de proyecto con desafío, solución y resultados en `src/data/projects.ts`.

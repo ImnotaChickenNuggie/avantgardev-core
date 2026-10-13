@@ -1,52 +1,49 @@
 # Sistema de diseño
 
-Referencia completa y vigente: [`DESIGN.md`](../../DESIGN.md) (raíz). Contexto de producto: [`PRODUCT.md`](../../PRODUCT.md). Este documento resume lo que importa al implementar.
+Referencia vigente: [`DESIGN.md`](../../DESIGN.md). Producto: [`PRODUCT.md`](../../PRODUCT.md). Los tokens viven en `src/styles/global.css`. El rediseño avanza por fases; los componentes aún no migrados conservan la apariencia anterior.
 
-Todos los tokens viven en `src/styles/global.css`. Dirección: **El Escáner**, un HUD inspirado en Death Stranding (sin paisajes) mezclado con cyberpunk. El rediseño se hace por fases; mientras tanto algunos componentes aún usan la apariencia anterior.
+Dirección: **El Hilo**. Base violeta-negro (coherente con el shader del Hero), acentos morado y neón con emisión en hover, y una sola idea de interfaz: un hilo que conecta las secciones, tomada de la idea de conexión de Death Stranding y del carácter "colectivo" de la marca.
 
 ## Color
-
-Base fría desaturada en ambos temas; morado = acción; neón = acento puntual; cian = líneas HUD; ámbar = avisos.
 
 | Token (Tailwind) | Variable | Uso |
 |---|---|---|
 | `bg-bg`, `bg-surface`, `bg-surface-2`, `bg-subtle` | `--ag-bg`, `--ag-surface`… | Fondos |
 | `text-text`, `text-muted`, `text-disabled` | `--ag-text`, `--ag-muted`… | Texto |
 | `bg-primary`, `text-primary-ink` | `--ag-primary`, `--ag-primary-ink` | Acción / texto morado legible |
-| `text-neon`, `text-neon-ink` | `--ag-neon`, `--ag-neon-ink` | Acento puntual (`neon-ink` es el legible en light) |
-| `text-hud`, `bg-hud-muted` | `--ag-hud` | Líneas y foco HUD |
+| `text-neon`, `text-neon-ink` | `--ag-neon`, `--ag-neon-ink` | Acento vivo (`neon-ink` es el legible en light) |
+| `text-hud` | `--ag-hud` | Cian: solo anillo de foco |
 | `text-amber`, `text-danger` | `--ag-amber`, `--ag-danger` | Aviso / error |
 | `border-line`, `border-line-strong` | `--ag-line`, `--ag-line-strong` | Divisores de 1px |
 
-Los colores se exponen como `--ag-*` y Tailwind los mapea con `@theme inline`. No hardcodear hex en componentes (el hook `check-conventions.sh` lo avisa). El Hero conserva sus colores propios en `ColorBends`.
+No hardcodear hex en componentes (el hook `check-conventions.sh` avisa). El Hero conserva sus colores propios en `ColorBends`.
 
 ## Tipografía
 
-- `font-heading` → "Vanregis" (woff2 autoalojado en `/fonts/vanregis.woff2`): display en mayúsculas.
-- `font-sans` → "Space Grotesk" (Google Fonts, lazy): cuerpo.
-- `font-mono` → "JetBrains Mono" (Google Fonts, lazy): solo datos, índices y medidas.
-- Escalas: `text-2xs` (0.625rem), `text-display` (8rem); espaciados extra: `18`, `22`, `26`, `30`, `34`, `38`, `42`.
+- `font-heading` → Vanregis (autoalojado): display en mayúsculas.
+- `font-sans` → Space Grotesk: cuerpo. `font-mono` → JetBrains Mono: datos y etiquetas.
+- Escalas: `text-2xs`, `text-display`; espaciados extra `18`…`42`.
 
-## Utilitarios HUD
+## Lenguaje propio
 
-| Clase | Efecto |
+| Pieza | Uso |
 |---|---|
-| `hud-frame` | Borde 1px con esquinas cian de 14px; se intensifica en hover/foco |
-| `hud-tick` | Regla de marcas tipo instrumento |
-| `hud-tag` | Etiqueta mono corta (índices, estados) |
-| `hud-scan` | Barrido cian estilo Odradek al hover/foco |
-| `hud-glitch` | Separación RGB breve al hover |
+| **Hilo** (`.strand` + `.strand-node`, `Strand.astro`) | Línea vertical que se enciende en neón al avanzar; un nodo (rombo) por sección. Solo ≥1344px. Cada sección pone `<span class="strand-node">` |
+| **Rombo-marcador** | Aparece en hover de filas (servicios, manifiesto) y en los pasos de metodología |
+| `cut-corner` | Esquinas cortadas (chaflán) en botones sólidos; recorta sombras, no usar con glow |
+| `hud-scan` | Barrido tipo Odradek al hover/foco |
+| `hud-glitch` | Separación RGB breve al hover en titulares |
 
-Textos HUD (en español, listos para traducir) en `src/data/hud-labels.ts`.
+Reglas: sin etiquetas encima de los titulares; números solo donde hay secuencia (metodología); glow solo en hover/foco.
 
 ## Forma y profundidad
 
-Radio base 2px (`--radius`). Plano por defecto: profundidad con línea y tono. `shadow-glow-primary|neon|danger|subtle` son anillos de 1px más emisión corta, solo en hover/foco.
+Radio base 2px. Plano por defecto; `shadow-glow-primary|neon|danger|subtle` solo en hover/foco.
 
 ## Modo oscuro
 
-Clase `dark` en `<html>`, alternada vía localStorage + preferencia del SO. Flash evitado con script inline en `<head>` (ver [layout](../arquitectura/layout.md)). Variante personalizada `.dark *` registrada en Tailwind. El rediseño aplica por igual a light y dark.
+Clase `dark` en `<html>` (localStorage + preferencia del SO). Aplica por igual a light y dark. Ver [layout](../arquitectura/layout.md).
 
 ## Movimiento
 
-Lenis para smooth scroll, GSAP para entrada/scroll, `.reveal` + IntersectionObserver. Todo respeta `prefers-reduced-motion`.
+Lenis, GSAP y `.reveal`. Respetan `prefers-reduced-motion`.

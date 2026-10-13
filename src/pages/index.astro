@@ -8,13 +8,15 @@ import Methodology from "../components/Methodology.astro";
 import Navbar from "../components/Navbar.astro";
 import Projects from "../components/Projects.astro";
 import Services from "../components/Services.astro";
+import Strand from "../components/Strand.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 ---
 
 <Layout description="Agencia de desarrollo web, marketing digital y diseño en México. Transformamos ideas en realidades digitales con tecnología de vanguardia y estrategias innovadoras para impulsar tu negocio.">
 	<Navbar />
-	<main>
+	<main class="relative">
+		<Strand />
 		<Hero />
 		<AuthorityBanner />
 		<Services />
