@@ -1,4 +1,5 @@
 ---
+import { hudStatus } from "@/data/hud-labels";
 import ColorBends from "./ColorBends";
 ---
 
@@ -26,22 +27,15 @@ import ColorBends from "./ColorBends";
 	<div class="relative mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:gap-0 lg:py-34">
 		<!-- Left: Copy -->
 		<div class="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
-			<p
-				class="mb-6 inline-flex items-center gap-2 rounded-full border border-neon/20 bg-neon/5 px-4 py-1.5 font-mono text-xs font-medium tracking-widest text-neon uppercase"
-			>
-				<span class="inline-block size-1.5 animate-glow-pulse rounded-full bg-neon"></span>
-				Colectivo disruptivo
-			</p>
-
 			<h1
-				class="font-heading text-4xl md:text-5xl leading-[0.95] font-black tracking-tight text-text sm:text-6xl lg:text-7xl xl:text-8xl"
+				class="font-heading text-4xl md:text-5xl leading-[0.95] font-black tracking-tight text-text hud-glitch sm:text-6xl lg:text-7xl xl:text-8xl"
 			>
 				<span class="sr-only">Agencia de Desarrollo Web, Marketing Digital y Diseño en México </span>
 				TRANSFORMAMOS
 				<br />
 				IDEAS EN
 				<br />
-				<span class="text-neon">REALIDADES</span>
+				<span class="text-neon-ink">REALIDADES</span>
 			</h1>
 
 			<p class="mt-8 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
@@ -52,7 +46,7 @@ import ColorBends from "./ColorBends";
 			<div class="mt-10 flex flex-wrap items-center gap-4">
 				<a
 					href="#contacto"
-					class="group relative inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:bg-primary-hover hover:shadow-glow-primary"
+					class="hud-scan group relative inline-flex items-center gap-2 rounded-sm bg-primary px-7 py-3.5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:bg-primary-hover hover:shadow-glow-primary"
 				>
 					Conectemos
 					<svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -61,11 +55,26 @@ import ColorBends from "./ColorBends";
 				</a>
 				<a
 					href="#proyectos"
-					class="inline-flex items-center gap-2 rounded-lg border border-border px-7 py-3.5 text-sm font-semibold tracking-wider text-muted uppercase transition-all hover:border-text/30 hover:text-text"
+					class="inline-flex items-center gap-2 rounded-sm border border-line-strong px-7 py-3.5 text-sm font-semibold tracking-wider text-muted uppercase transition-colors hover:border-hud hover:text-text"
 				>
 					Ver proyectos
 				</a>
 			</div>
+		</div>
+	</div>
+
+	<!-- HUD strip: datos de instrumento, no decoración -->
+	<div class="relative z-10 mx-auto max-w-7xl px-6 pb-8">
+		<div class="hud-tick mb-3"></div>
+		<div class="hud-tag flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+			<span class="inline-flex items-center gap-2">
+				<span class="inline-block size-1.5 animate-glow-pulse bg-neon"></span>
+				{hudStatus.online}
+			</span>
+			<span class="hidden sm:inline">{hudStatus.location}</span>
+			<a href="#servicios" class="text-hud transition-colors hover:text-text">
+				{hudStatus.scanning} ↓
+			</a>
 		</div>
 	</div>
 

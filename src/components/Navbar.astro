@@ -1,22 +1,28 @@
 ---
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { Image } from "astro:assets";
+import { hudSections } from "@/data/hud-labels";
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import logo from "../assets/logo.webp";
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import MobileMenu from "./MobileMenu";
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import ThemeToggle from "./ThemeToggle";
+
+const links = [
+	{ href: "#servicios", ...hudSections.servicios },
+	{ href: "#manifiesto", ...hudSections.manifiesto },
+	{ href: "#metodologia", ...hudSections.metodologia },
+	{ href: "#proyectos", ...hudSections.proyectos },
+	{ href: "#faqs", ...hudSections.faqs },
+];
 ---
 
 <header
-	class='fixed top-0 left-0 z-50 hidden w-full border-b border-border/50 bg-bg/80 backdrop-blur-xl md:block'
+	class='fixed top-0 left-0 z-50 hidden w-full border-b border-line bg-bg/90 md:block'
 >
 	<nav class='mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
-		<a
-			href='/'
-			class='flex flex-row space-x-2 items-center'
-		>
+		<a href='/' class='flex flex-row items-center space-x-2'>
 			<Image
 				src={logo}
 				alt='Avantgardev'
@@ -27,54 +33,29 @@ import ThemeToggle from "./ThemeToggle";
 			<span class='font-heading text-2xl'>AVANTGARDEV</span>
 		</a>
 
-		<ul class='hidden items-center gap-8 md:flex'>
-			<li>
-				<a
-					href='#servicios'
-					class='text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text'
-				>
-					Servicios
-				</a>
-			</li>
-			<li>
-				<a
-					href='#manifiesto'
-					class='text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text'
-				>
-					Manifiesto
-				</a>
-			</li>
-			<li>
-				<a
-					href='#metodologia'
-					class='text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text'
-				>
-					Metodología
-				</a>
-			</li>
-			<li>
-				<a
-					href='#proyectos'
-					class='text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text'
-				>
-					Proyectos
-				</a>
-			</li>
-			<li>
-				<a
-					href='#faqs'
-					class='text-sm font-medium tracking-wide text-muted uppercase transition-colors hover:text-text'
-				>
-					FAQ's
-				</a>
-			</li>
+		<ul class='hidden items-center gap-7 md:flex'>
+			{
+				links.map((link) => (
+					<li>
+						<a
+							href={link.href}
+							class='hud-tag group flex items-baseline gap-1.5 py-1 transition-colors hover:text-text focus-visible:text-text'
+						>
+							<span class='text-hud'>{link.index}</span>
+							<span class='border-b border-transparent transition-colors group-hover:border-hud'>
+								{link.label}
+							</span>
+						</a>
+					</li>
+				))
+			}
 		</ul>
 
 		<div class='hidden items-center gap-3 md:flex'>
 			<ThemeToggle client:load />
 			<a
 				href='#contacto'
-				class='rounded-lg border border-neon/40 px-5 py-2 text-sm font-semibold tracking-widest text-neon uppercase transition-all hover:border-neon hover:bg-neon/10 hover:shadow-glow-neon'
+				class='hud-scan rounded-sm border border-hud px-5 py-2 text-xs font-semibold tracking-widest text-hud uppercase transition-colors hover:bg-hud-muted'
 			>
 				CONECTEMOS
 			</a>
