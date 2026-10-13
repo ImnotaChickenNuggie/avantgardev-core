@@ -32,41 +32,35 @@ const values = [
 ];
 ---
 
-<section
-	id='manifiesto'
-	class='relative py-26 lg:py-38'
->
-	<div class='mx-auto max-w-5xl px-6 reveal'>
-		<div class='mb-18 text-center'>
-			<p
-				class='mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase'
-			>
-				Nuestro manifiesto
-			</p>
+<section id='manifiesto' class='relative py-26 lg:py-38'>
+	<span class='strand-node' aria-hidden='true'></span>
+	<div class='mx-auto grid max-w-7xl gap-12 px-6 reveal lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20'>
+		<div class='lg:sticky lg:top-32 lg:self-start'>
 			<h2
 				class='font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl'
 			>
-				EN LO QUE CREEMOS
+				EN LO QUE<br />CREEMOS
 			</h2>
+			<p class='mt-6 max-w-sm leading-relaxed text-muted'>
+				Seis ideas que guían cada decisión, de la primera línea de código al último píxel.
+			</p>
 		</div>
 
-		<div class='space-y-0'>
+		<div>
 			{
-				values.map((value, i) => (
-					<article class='group border-t border-border/40 py-10 transition-all duration-300 last:border-b hover:border-neon/20 lg:py-14'>
-						<div class='flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8 lg:gap-12'>
-							<span class='font-heading text-5xl font-black text-border/60 transition-colors group-hover:text-neon/30 lg:text-6xl'>
-								{String(i + 1).padStart(2, '0')}
-							</span>
-							<div class='flex-1'>
-								<h3 class='mb-3 text-xl font-bold tracking-tight text-text sm:text-2xl'>
-									{value.title}
-								</h3>
-								<p class='max-w-2xl leading-relaxed text-muted'>
-									{value.description}
-								</p>
-							</div>
-						</div>
+				values.map((value) => (
+					<article class='group relative border-t border-line py-9 last:border-b lg:py-11'>
+						<span
+							aria-hidden='true'
+							class='pointer-events-none absolute top-[2.9rem] -left-5 hidden size-2 rotate-45 bg-neon opacity-0 shadow-glow-neon transition-opacity duration-300 group-hover:opacity-100 lg:top-[3.4rem] lg:block'
+						>
+						</span>
+						<h3 class='mb-3 text-xl font-bold tracking-tight text-text transition-colors duration-300 group-hover:text-neon-ink sm:text-2xl'>
+							{value.title}
+						</h3>
+						<p class='max-w-xl leading-relaxed text-muted'>
+							{value.description}
+						</p>
 					</article>
 				))
 			}

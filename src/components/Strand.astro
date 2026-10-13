@@ -1,0 +1,54 @@
+---
+// Hilo de la página: línea que se enciende al avanzar. Los nodos (.strand-node)
+// viven dentro de cada sección. Solo se muestra en pantallas anchas (ver global.css).
+---
+
+<div class="strand" aria-hidden="true"></div>
+
+<script>
+	let controller: AbortController | undefined;
+
+	function initStrand() {
+		controller?.abort();
+		const strand = document.querySelector<HTMLElement>(".strand");
+		const nodes = Array.from(document.querySelectorAll<HTMLElement>(".strand-node"));
+		if (!strand || nodes.length === 0) return;
+
+		controller = new AbortController();
+		const main = strand.parentElement as HTMLElement;
+		const probeRatio = 0.55;
+
+		const update = () => {
+			const mainTop = main.getBoundingClientRect().top;
+			const first = nodes[0].getBoundingClientRect().top - mainTop + 5;
+			const last = nodes[nodes.length - 1].getBoundingClientRect().top - mainTop + 5;
+			strand.style.top = `${first}px`;
+			strand.style.height = `${Math.max(last - first, 1)}px`;
+
+			const probe = window.innerHeight * probeRatio - mainTop;
+			const progress = Math.min(1, Math.max(0, (probe - first) / Math.max(last - first, 1)));
+			strand.style.setProperty("--strand-p", progress.toFixed(4));
+
+			for (const node of nodes) {
+				node.classList.toggle("is-lit", node.getBoundingClientRect().top < window.innerHeight * probeRatio);
+			}
+		};
+
+		let queued = false;
+		const schedule = () => {
+			if (queued) return;
+			queued = true;
+			requestAnimationFrame(() => {
+				queued = false;
+				update();
+			});
+		};
+
+		const { signal } = controller;
+		window.addEventListener("scroll", schedule, { passive: true, signal });
+		window.addEventListener("resize", schedule, { signal });
+		update();
+	}
+
+	document.addEventListener("astro:page-load", initStrand);
+</script>

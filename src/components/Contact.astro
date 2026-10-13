@@ -8,40 +8,34 @@ import ContactForm from "./ContactForm";
 	id='contacto'
 	class='relative bg-surface py-26 lg:py-38'
 >
+	<span class='strand-node' aria-hidden='true'></span>
 	<!-- Background glow -->
 	<div
 		class='pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(57,255,20,0.03),transparent_50%)]'
 	>
 	</div>
 
-	<div class='relative mx-auto max-w-4xl px-6 reveal'>
-		<div class='mb-14 text-center'>
-			<p
-				class='mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase'
-			>
-				Comencemos
-			</p>
+	<div class='relative mx-auto grid max-w-7xl gap-12 px-6 reveal lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20'>
+		<div>
 			<h2
 				class='font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl'
 			>
-				DALE VIDA A TU IDEA
+				DALE VIDA<br />A TU <span class='text-neon-ink'>IDEA</span>
 			</h2>
-			<p
-				class='mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted'
-			>
+			<p class='mt-6 max-w-md text-lg leading-relaxed text-muted'>
 				Cuéntanos qué quieres construir. Nosotros te decimos cómo hacerlo
 				realidad — con desarrollo, diseño, marketing o todo junto.
 			</p>
 		</div>
 
-		<div class='mx-auto max-w-xl'>
+		<div class='w-full max-w-xl'>
 			<ContactForm client:visible />
 		</div>
 	</div>
 </section>
 
 <!-- Footer -->
-<footer class='border-t border-border/30 bg-bg py-8'>
+<footer class='border-t border-line bg-bg py-8'>
 	<div
 		class='mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row'
 	>
@@ -66,7 +60,7 @@ import ContactForm from "./ContactForm";
 				href='https://www.instagram.com/avantgardev/'
 				target='_blank'
 				rel='noopener noreferrer'
-				class='flex items-center gap-2 text-xs text-disabled transition-colors hover:text-text'
+				class='flex items-center gap-2 text-xs text-muted transition-colors hover:text-text'
 			>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -101,7 +95,7 @@ import ContactForm from "./ContactForm";
 			</a>
 			<a
 				href='mailto:contacto@avantgardev.com.mx'
-				class='flex items-center gap-2 text-xs text-disabled transition-colors hover:text-text'
+				class='flex items-center gap-2 text-xs text-muted transition-colors hover:text-text'
 			>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -127,7 +121,7 @@ import ContactForm from "./ContactForm";
 				contacto@avantgardev.com.mx
 			</a>
 		</div>
-		<p class='text-xs text-disabled'>
+		<p class='text-xs text-muted'>
 			&copy; {new Date().getFullYear()} Avantgardev. Todos los derechos reservados.
 		</p>
 	</div>

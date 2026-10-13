@@ -229,13 +229,13 @@
 :root:not(.dark) {
 	color-scheme: light;
 
-	--ag-bg: #eef1f5;
-	--ag-surface: #e4e9ef;
-	--ag-surface-2: #d8dfe8;
-	--ag-subtle: #f4f6f9;
-	--ag-text: #0e1620;
-	--ag-muted: #4f5b6b;
-	--ag-disabled: #9aa5b4;
+	--ag-bg: #f2f0f8;
+	--ag-surface: #e8e5f1;
+	--ag-surface-2: #dcd8ea;
+	--ag-subtle: #f7f5fb;
+	--ag-text: #15111f;
+	--ag-muted: #5b5672;
+	--ag-disabled: #a39eb8;
 
 	--ag-primary: #6d28d9;
 	--ag-primary-hover: #5b21b6;
@@ -250,8 +250,8 @@
 	--ag-danger: #dc2626;
 	--ag-danger-muted: rgba(220, 38, 38, 0.08);
 
-	--ag-line: #c5cedb;
-	--ag-line-strong: #8d9aac;
+	--ag-line: #d3cfe3;
+	--ag-line-strong: #9b96b4;
 
 	--ag-glow-primary: 0 0 0 1px rgba(109, 40, 217, 0.35), 0 2px 10px rgba(109, 40, 217, 0.18);
 	--ag-glow-primary-lg: 0 0 0 1px rgba(109, 40, 217, 0.4), 0 6px 22px rgba(109, 40, 217, 0.16);
@@ -265,13 +265,13 @@
 .dark {
 	color-scheme: dark;
 
-	--ag-bg: #0a0d12;
-	--ag-surface: #10151c;
-	--ag-surface-2: #171e28;
-	--ag-subtle: #131923;
-	--ag-text: #e6ebf0;
-	--ag-muted: #8a95a5;
-	--ag-disabled: #4b5565;
+	--ag-bg: #07070f;
+	--ag-surface: #0d0d19;
+	--ag-surface-2: #14142a;
+	--ag-subtle: #101022;
+	--ag-text: #eeeaf6;
+	--ag-muted: #9892b0;
+	--ag-disabled: #4d4a68;
 
 	--ag-primary: #7c3aed;
 	--ag-primary-hover: #8b5cf6;
@@ -286,15 +286,15 @@
 	--ag-danger: #ef4444;
 	--ag-danger-muted: rgba(239, 68, 68, 0.12);
 
-	--ag-line: #232c3a;
-	--ag-line-strong: #3a4659;
+	--ag-line: #22213a;
+	--ag-line-strong: #3b3960;
 
-	--ag-glow-primary: 0 0 0 1px rgba(124, 58, 237, 0.55), 0 0 14px rgba(124, 58, 237, 0.3);
-	--ag-glow-primary-lg: 0 0 0 1px rgba(124, 58, 237, 0.6), 0 0 28px rgba(124, 58, 237, 0.24);
-	--ag-glow-neon: 0 0 0 1px rgba(57, 255, 20, 0.6), 0 0 12px rgba(57, 255, 20, 0.28);
-	--ag-glow-neon-lg: 0 0 0 1px rgba(57, 255, 20, 0.65), 0 0 28px rgba(57, 255, 20, 0.2);
-	--ag-glow-danger: 0 0 0 1px rgba(239, 68, 68, 0.55), 0 0 12px rgba(239, 68, 68, 0.28);
-	--ag-glow-subtle: 0 1px 0 rgba(230, 235, 240, 0.04);
+	--ag-glow-primary: 0 0 20px rgba(124, 58, 237, 0.35);
+	--ag-glow-primary-lg: 0 0 40px rgba(124, 58, 237, 0.25);
+	--ag-glow-neon: 0 0 20px rgba(57, 255, 20, 0.4);
+	--ag-glow-neon-lg: 0 0 60px rgba(57, 255, 20, 0.2);
+	--ag-glow-danger: 0 0 20px rgba(239, 68, 68, 0.35);
+	--ag-glow-subtle: 0 0 30px rgba(238, 234, 246, 0.04);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -454,58 +454,81 @@ table,
 }
 
 /* ══════════════════════════════════════════════════════════════
-   HUD — lenguaje de interfaz (instrumento de medición, no decoración)
+   LENGUAJE — hilo (strand) + esquinas cortadas + barrido de escáner
+   El hilo es el recorrido de la página: una línea que se enciende
+   al avanzar y nodos (rombos) que marcan cada sección. Representa
+   la idea del colectivo: todo está conectado.
    ══════════════════════════════════════════════════════════════ */
 
-/* Marco con esquinas: contenedor de lectura sin radios ni halos */
-@utility hud-frame {
-	--hud-c: var(--ag-hud);
-	--hud-len: 14px;
-	position: relative;
-	border: 1px solid var(--ag-line);
+.strand {
+	--strand-p: 0;
+	position: absolute;
+	left: 28px;
+	width: 1px;
+	display: none;
+	pointer-events: none;
+	background: var(--ag-line);
+}
 
-	&::before {
-		content: "";
-		position: absolute;
-		inset: -1px;
-		pointer-events: none;
-		background:
-			linear-gradient(var(--hud-c), var(--hud-c)) top left / var(--hud-len) 1px no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) top left / 1px var(--hud-len) no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) top right / var(--hud-len) 1px no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) top right / 1px var(--hud-len) no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) bottom left / var(--hud-len) 1px no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) bottom left / 1px var(--hud-len) no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) bottom right / var(--hud-len) 1px no-repeat,
-			linear-gradient(var(--hud-c), var(--hud-c)) bottom right / 1px var(--hud-len) no-repeat;
-		opacity: 0.55;
-		transition: opacity 0.25s ease-out;
+.strand::after {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: calc(var(--strand-p) * 100%);
+	background: var(--ag-neon);
+	box-shadow: 0 0 10px color-mix(in srgb, var(--ag-neon) 60%, transparent);
+}
+
+.strand-node {
+	position: absolute;
+	left: 28px;
+	top: 6.9rem;
+	display: none;
+	width: 11px;
+	height: 11px;
+	margin-left: -5px;
+	rotate: 45deg;
+	z-index: 2;
+	background: var(--ag-bg);
+	border: 1px solid var(--ag-line-strong);
+	transition:
+		background-color 0.4s ease-out,
+		border-color 0.4s ease-out,
+		box-shadow 0.4s ease-out;
+}
+
+.strand-node.is-lit {
+	background: var(--ag-neon);
+	border-color: var(--ag-neon);
+	box-shadow: 0 0 12px color-mix(in srgb, var(--ag-neon) 70%, transparent);
+}
+
+@media (min-width: 1024px) {
+	.strand-node {
+		top: 9.9rem;
 	}
+}
 
-	&:hover::before,
-	&:focus-within::before {
-		opacity: 1;
+@media (min-width: 1344px) {
+	.strand,
+	.strand-node {
+		display: block;
 	}
 }
 
-/* Regla de marcas (ticks) como la de un instrumento de medición */
-@utility hud-tick {
-	height: 6px;
-	background: repeating-linear-gradient(90deg, var(--ag-line-strong) 0 1px, transparent 1px 8px);
+/* Esquinas cortadas (chaflán): el gesto angular del Bridges y del cyberpunk */
+@utility cut-corner {
+	clip-path: polygon(
+		0 0,
+		calc(100% - 12px) 0,
+		100% 12px,
+		100% 100%,
+		12px 100%,
+		0 calc(100% - 12px)
+	);
 }
 
-/* Etiqueta de instrumento: dato o medida, siempre mono, siempre corta */
-@utility hud-tag {
-	font-family: var(--font-mono);
-	font-size: 0.6875rem;
-	line-height: 1.4;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--ag-muted);
-	font-variant-numeric: tabular-nums;
-}
-
-/* Barrido tipo Odradek: una línea cian cruza el elemento al hover/foco */
+/* Barrido tipo Odradek: una línea cruza el elemento al hover/foco */
 @utility hud-scan {
 	position: relative;
 	overflow: hidden;
@@ -519,8 +542,8 @@ table,
 		background: linear-gradient(
 			to bottom,
 			transparent 0%,
-			color-mix(in srgb, var(--ag-hud) 18%, transparent) 88%,
-			var(--ag-hud) 99%,
+			color-mix(in srgb, white 14%, transparent) 88%,
+			rgb(255 255 255 / 0.7) 99%,
 			transparent 100%
 		);
 		opacity: 0;
@@ -528,8 +551,7 @@ table,
 	}
 
 	&:hover::after,
-	&:focus-visible::after,
-	&[data-scanning]::after {
+	&:focus-visible::after {
 		animation: var(--animate-scan-sweep);
 	}
 }
@@ -544,5 +566,10 @@ table,
 @media (prefers-reduced-motion: reduce) {
 	.hud-scan::after {
 		display: none;
+	}
+
+	.strand-node,
+	.strand::after {
+		transition: none;
 	}
 }

@@ -30,16 +30,16 @@ const faqs = [
 
 export default function FAQSection() {
 	return (
-		<Accordion className="space-y-2">
+		<Accordion>
 			{faqs.map((faq) => (
 				<AccordionItem
 					key={faq.question}
-					className="rounded-xl border border-border/40 bg-surface/50 px-6 transition-colors hover:border-primary/20 not-last:border-b-0"
+					className="border-t border-line transition-colors last:border-b hover:border-neon/50"
 				>
-					<AccordionTrigger className="py-5 text-base font-semibold tracking-tight text-text hover:no-underline sm:text-lg">
+					<AccordionTrigger className="py-6 text-base font-semibold tracking-tight text-text hover:text-neon-ink hover:no-underline sm:text-lg">
 						{faq.question}
 					</AccordionTrigger>
-					<AccordionContent className="text-muted">
+					<AccordionContent className="pr-8 text-muted">
 						<p>{faq.answer}</p>
 					</AccordionContent>
 				</AccordionItem>

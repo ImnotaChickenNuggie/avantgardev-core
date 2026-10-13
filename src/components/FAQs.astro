@@ -44,19 +44,13 @@ import FAQSection from "./FAQSection";
 </script>
 
 <section id="faqs" class="relative py-26 lg:py-38">
-	<div class="mx-auto max-w-3xl px-6 reveal">
-		<div class="mb-14 text-center">
-			<p
-				class="mb-4 font-mono text-xs font-medium tracking-[0.3em] text-neon uppercase"
-			>
-				Preguntas frecuentes
-			</p>
-			<h2
-				class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl"
-			>
-				RESOLVEMOS TUS DUDAS
-			</h2>
-		</div>
+	<span class="strand-node" aria-hidden="true"></span>
+	<div class="mx-auto grid max-w-7xl gap-12 px-6 reveal lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+		<h2
+			class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:sticky lg:top-32 lg:self-start lg:text-6xl"
+		>
+			RESOLVEMOS<br />TUS DUDAS
+		</h2>
 
 		<FAQSection client:visible />
 	</div>
