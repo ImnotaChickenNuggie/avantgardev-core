@@ -32,7 +32,7 @@ export default function ThemeToggle() {
 			type="button"
 			onClick={toggle}
 			aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-			className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-surface/50 text-muted transition-all hover:border-primary/40 hover:text-text"
+			className="relative flex h-9 w-9 items-center justify-center rounded-sm border border-line text-muted transition-colors hover:border-hud hover:text-hud"
 		>
 			{/* Sun icon */}
 			<svg

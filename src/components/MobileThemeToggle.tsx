@@ -32,10 +32,10 @@ export default function MobileThemeToggle() {
 		<button
 			type="button"
 			onClick={toggle}
-			className="flex items-center gap-3 text-sm font-medium text-[#111] transition-colors"
+			className="flex items-center gap-3 text-sm font-medium text-text transition-colors hover:text-hud"
 		>
 			{/* Sun/Moon icon */}
-			<span className="flex size-8 items-center justify-center rounded-full border border-current/20">
+			<span className="flex size-8 items-center justify-center rounded-sm border border-line-strong">
 				{isDark ? (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

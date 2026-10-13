@@ -35,14 +35,25 @@ const menuItems = [
 	},
 ];
 
+const readToken = (name: string) =>
+	getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+type MenuColors = { text: string; bg: string; primary: string; hud: string };
+
 export default function MobileMenu() {
-	const [isDark, setIsDark] = useState(true);
+	const [palette, setPalette] = useState<MenuColors | null>(null);
 
 	useEffect(() => {
-		const check = () => setIsDark(document.documentElement.classList.contains("dark"));
-		check();
+		const read = () =>
+			setPalette({
+				text: readToken("--ag-text"),
+				bg: readToken("--ag-bg"),
+				primary: readToken("--ag-primary"),
+				hud: readToken("--ag-hud"),
+			});
+		read();
 
-		const observer = new MutationObserver(check);
+		const observer = new MutationObserver(read);
 		observer.observe(document.documentElement, {
 			attributes: true,
 			attributeFilter: ["class"],
@@ -50,18 +61,20 @@ export default function MobileMenu() {
 		return () => observer.disconnect();
 	}, []);
 
+	if (!palette) return null;
+
 	return (
 		<StaggeredMenu
 			position="right"
 			items={menuItems}
 			displaySocials={false}
 			displayItemNumbering={true}
-			menuButtonColor={isDark ? "#f7ebec" : "#1a1128"}
-			openMenuButtonColor={isDark ? "#070711" : "#faf9fc"}
-			changeMenuColorOnOpen={true}
-			colors={isDark ? ["#7c3aed", "#070711"] : ["#6d28d9", "#faf9fc"]}
+			menuButtonColor={palette.text}
+			openMenuButtonColor={palette.text}
+			changeMenuColorOnOpen={false}
+			colors={[palette.primary, palette.bg]}
 			logoUrl="/favicon.svg"
-			accentColor={isDark ? "#7c3aed" : "#6d28d9"}
+			accentColor={palette.hud}
 			isFixed={true}
 			panelFooter={<MobileThemeToggle />}
 		/>
