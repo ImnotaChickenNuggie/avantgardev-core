@@ -77,11 +77,11 @@ export default function ContactForm() {
 
 	if (status === "success") {
 		return (
-			<div className="rounded-2xl border border-neon/20 bg-neon/5 p-10 text-center">
-				<div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-neon/10">
+			<div className="rounded-sm border border-neon/30 bg-neon/5 p-10 text-center">
+				<div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-sm bg-neon/10">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="size-8 text-neon"
+						className="size-8 text-neon-ink"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -98,7 +98,7 @@ export default function ContactForm() {
 				<button
 					type="button"
 					onClick={() => setStatus("idle")}
-					className="mt-6 text-sm font-medium text-primary transition-colors hover:text-primary-hover"
+					className="mt-6 text-sm font-medium text-primary-ink transition-colors hover:text-text"
 				>
 					Enviar otro mensaje
 				</button>
@@ -118,7 +118,7 @@ export default function ContactForm() {
 					name="name"
 					required
 					placeholder="Tu nombre"
-					className="w-full rounded-lg border border-border/60 bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
+					className="w-full rounded-sm border border-line-strong bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
 				/>
 			</div>
 
@@ -132,7 +132,7 @@ export default function ContactForm() {
 					name="email"
 					required
 					placeholder="tu@email.com"
-					className="w-full rounded-lg border border-border/60 bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
+					className="w-full rounded-sm border border-line-strong bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
 				/>
 			</div>
 
@@ -146,12 +146,12 @@ export default function ContactForm() {
 					required
 					rows={5}
 					placeholder="Cuentanos sobre tu proyecto, tu visión y lo que necesitas..."
-					className="w-full resize-none rounded-lg border border-border/60 bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
+					className="w-full resize-none rounded-sm border border-line-strong bg-bg px-4 py-3 text-sm text-text placeholder:text-disabled transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50"
 				/>
 			</div>
 
 			{status === "error" && (
-				<div className="rounded-lg border border-danger/30 bg-danger-muted px-4 py-3 text-sm text-danger">
+				<div className="rounded-sm border border-danger/30 bg-danger-muted px-4 py-3 text-sm text-danger">
 					{errorMsg}
 				</div>
 			)}
@@ -159,7 +159,7 @@ export default function ContactForm() {
 			<button
 				type="submit"
 				disabled={status === "sending"}
-				className="group w-full rounded-lg bg-neon px-8 py-4 text-sm font-bold tracking-widest uppercase transition-all hover:shadow-glow-neon active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed dark:text-bg text-white"
+				className="cut-corner group w-full bg-neon px-8 py-4 text-sm font-bold tracking-widest uppercase transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed dark:text-bg text-white"
 			>
 				{status === "sending" ? "Enviando..." : "Inicia la transformación"}
 			</button>

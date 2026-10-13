@@ -71,7 +71,7 @@ components:
 
 # Design System: Avantgardev
 
-> Estado: **semilla direccional** del rediseño por fases. Se re-documenta en modo scan al terminar.
+> Estado: **semilla direccional** implementada en toda la home y las páginas de proyecto. Pendiente re-documentar en modo scan tras validar el diseño.
 
 ## Overview
 

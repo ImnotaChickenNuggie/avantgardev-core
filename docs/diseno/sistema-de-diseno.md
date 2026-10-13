@@ -1,6 +1,6 @@
 # Sistema de diseño
 
-Referencia vigente: [`DESIGN.md`](../../DESIGN.md). Producto: [`PRODUCT.md`](../../PRODUCT.md). Los tokens viven en `src/styles/global.css`. El rediseño avanza por fases; los componentes aún no migrados conservan la apariencia anterior.
+Referencia vigente: [`DESIGN.md`](../../DESIGN.md). Producto: [`PRODUCT.md`](../../PRODUCT.md). Los tokens viven en `src/styles/global.css`. Todas las secciones de la home y las páginas de proyecto usan este sistema.
 
 Dirección: **El Hilo**. Base violeta-negro (coherente con el shader del Hero), acentos morado y neón con emisión en hover, y una sola idea de interfaz: un hilo que conecta las secciones, tomada de la idea de conexión de Death Stranding y del carácter "colectivo" de la marca.
 
