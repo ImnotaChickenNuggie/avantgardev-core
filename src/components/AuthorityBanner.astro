@@ -39,12 +39,12 @@ const _brands = [
 			class='flex animate-marquee items-center gap-16 group-hover:paused'
 		>
 			{
-				[...Array(6)].map(() => (
-					<div class='flex shrink-0 items-center gap-16'>
+				[...Array(6)].map((_, copy) => (
+					<div class='flex shrink-0 items-center gap-16' aria-hidden={copy > 0 ? "true" : undefined}>
 						{_brands.map(({ src, alt }) => (
 							<img
 								src={src.src}
-								alt={alt}
+								alt={copy > 0 ? "" : alt}
 								width={120}
 								height={72}
 								class='h-12 w-[120px] object-contain select-none grayscale dark:opacity-40 dark:invert-0 opacity-60 invert'
