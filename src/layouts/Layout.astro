@@ -9,9 +9,12 @@ interface Props {
 }
 
 const {
-	title = "Avantgardev | Desarrollo, Marketing y Diseño Web a la medida para tu negocio | México",
-	description = "Transformamos ideas en realidades. Colectivo disruptivo de diseño y desarrollo web.",
+	title = "Avantgardev | Desarrollo Web, Diseño y Marketing en México",
+	description = "Creamos sitios web a la medida, diseño de marca y estrategias de marketing digital para negocios en México. Sin plantillas. Cotiza sin costo.",
 } = Astro.props;
+
+const path = Astro.url.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "");
+const canonical = new URL(path, Astro.site).href;
 ---
 
 <!doctype html>
@@ -29,7 +32,6 @@ const {
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<meta name="keywords" content="avantgardev, desarrollo web, diseño web, innovación, tecnología, seo, marketing, diseño, ui, ux, web development, web design" />
 		<meta name="author" content="Avantgardev" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
@@ -53,14 +55,15 @@ const {
 
 		<ClientRouter />
 		<title>{title}</title>
-	<link rel="canonical" href={Astro.url.href} />
+	<link rel="canonical" href={canonical} />
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Avantgardev — Desarrollo Web de Vanguardia" />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content="https://avantgardev.com.mx/og-image.png" />
-	<meta property="og:url" content={Astro.url.href} />
+	<meta property="og:image:alt" content="Avantgardev: desarrollo web, diseño y marketing digital" />
+	<meta property="og:url" content={canonical} />
 	<meta property="og:locale" content="es_MX" />
 
 	<!-- Twitter Cards -->
@@ -81,16 +84,31 @@ const {
 	</script>
 
 	<!-- Organization Schema -->
-	<script type="application/ld+json">
-		{
+	<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
-			"@type": "Organization",
-			"name": "Avantgardev",
-			"url": "https://avantgardev.com.mx",
-			"description": "Colectivo disruptivo de diseño y desarrollo web",
-			"logo": "https://avantgardev.com.mx/logo.png"
-		}
-	</script>
+			"@graph": [
+				{
+					"@type": "ProfessionalService",
+					"@id": "https://avantgardev.com.mx/#organization",
+					"name": "Avantgardev",
+					"url": "https://avantgardev.com.mx/",
+					"logo": "https://avantgardev.com.mx/logo.webp",
+					"image": "https://avantgardev.com.mx/og-image.png",
+					"email": "contacto@avantgardev.com.mx",
+					"areaServed": "MX",
+					"description": "Agencia de desarrollo web, diseño y marketing digital en México.",
+					"sameAs": ["https://www.instagram.com/avantgardev/"],
+				},
+				{
+					"@type": "WebSite",
+					"@id": "https://avantgardev.com.mx/#website",
+					"url": "https://avantgardev.com.mx/",
+					"name": "Avantgardev",
+					"inLanguage": "es-MX",
+					"publisher": { "@id": "https://avantgardev.com.mx/#organization" },
+				},
+			],
+		})} />
 	<script is:inline>
 		function initRevealObserver() {
 			var observer = new IntersectionObserver(
