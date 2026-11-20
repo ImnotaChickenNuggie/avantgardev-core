@@ -9,6 +9,7 @@
 | [specs/paginas.md](specs/paginas.md) | Secciones de la homepage y detalle de proyecto | Agregas o reordenas secciones |
 | [specs/datos-proyectos.md](specs/datos-proyectos.md) | Interfaz `Project` y proyectos actuales | Agregas o editas proyectos |
 | [guias/calidad-de-codigo.md](guias/calidad-de-codigo.md) | Biome, imports, Husky, commits, hooks de Claude | Antes de commitear |
+| [guias/agenda.md](guias/agenda.md) | Página `/agenda`, OAuth de Google Calendar, días y horarios | Conectas el calendario o cambias la disponibilidad |
 | [backlog-copy-servicios.md](backlog-copy-servicios.md) | Backlog de copy y servicios (MoSCoW) | Trabajas en copy |
 
 Contexto y visión del estudio: [`../avantgardev.md`](../avantgardev.md).

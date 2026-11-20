@@ -1,3 +1,14 @@
+import type { ImageMetadata } from "astro";
+import dashboardSentiment from "../assets/dashboard_sentiment.png";
+import dashboard2Sentiment from "../assets/dashboard2_sentiment.png";
+import infoAmanal from "../assets/info_amanal.png";
+import landingAmanal from "../assets/landing_amanal.png";
+import landingSentiment from "../assets/landing_sentiment.png";
+import ubicacionAmanal from "../assets/ubicacion_amanal.png";
+import vazza from "../assets/vazza.png";
+import vazzaDashboard from "../assets/vazza_dashboard.png";
+import vazzaTickets from "../assets/vazza_tickets.png";
+
 export interface Project {
 	slug: string;
 	title: string;
@@ -7,6 +18,7 @@ export interface Project {
 	tags: string[];
 	accent: "neon" | "primary";
 	image: string;
+	images?: ImageMetadata[];
 	featured: boolean;
 	challenge: string;
 	solution: string;
@@ -14,6 +26,7 @@ export interface Project {
 	year: string;
 	client: string;
 	url?: string;
+	links?: { href: string; label: string }[];
 }
 
 export const projects: Project[] = [
@@ -27,7 +40,8 @@ export const projects: Project[] = [
 			"Diseñamos y desarrollamos una plataforma e-commerce completa para Vazza, enfocada en ofrecer una experiencia de compra premium. Cada detalle del flujo de usuario fue optimizado para maximizar conversiones sin sacrificar la estética de marca.",
 		tags: ["Next.js", "Stripe", "Tailwind CSS"],
 		accent: "neon",
-		image: "/projects/vazza.webp",
+		image: vazza.src,
+		images: [vazza, vazzaDashboard, vazzaTickets],
 		featured: true,
 		challenge:
 			"Vazza necesitaba una plataforma que reflejara la calidad premium de sus productos con un checkout rápido y sin fricciones, manteniendo una experiencia visual inmersiva.",
@@ -40,6 +54,10 @@ export const projects: Project[] = [
 		],
 		year: "2025",
 		client: "Vazza",
+		links: [
+			{ href: "https://clientescreditocm.com/", label: "Portal de clientes" },
+			{ href: "https://vazza.com.mx/pages/mi-credito-vazza", label: "Mi crédito Vazza" },
+		],
 	},
 	{
 		slug: "capital-humano",
@@ -89,30 +107,6 @@ export const projects: Project[] = [
 		client: "Magnapelle",
 	},
 	{
-		slug: "nexo",
-		title: "Nexo",
-		category: "Identidad de Marca",
-		description:
-			"Sistema de identidad visual completo para startup fintech: logo, paleta, tipografía y brandbook ejecutivo.",
-		longDescription:
-			"Construimos desde cero el sistema de identidad visual de Nexo, una startup fintech que necesitaba proyectar confianza y modernidad. El resultado es una marca flexible que funciona desde una tarjeta de presentación hasta una app móvil.",
-		tags: ["Figma", "Brandbook", "Identidad Visual"],
-		accent: "neon",
-		image: "/projects/nexo.webp",
-		featured: false,
-		challenge:
-			"Nexo llegó sin nombre definido, sin colores, sin nada. Necesitaban una identidad que transmitiera solidez financiera sin caer en los clichés del sector: azules corporativos y tipografías genéricas.",
-		solution:
-			"Desarrollamos una identidad basada en el concepto de conexión y fluidez. Sistema cromático bicromático con verde eléctrico como acento, tipografía geométrica y un símbolo que funciona como ícono de app.",
-		results: [
-			"Sistema de marca usado en 3 rondas de inversión",
-			"Reconocimiento de marca del 78% en focus group",
-			"Brandbook de 64 páginas entregado en 3 semanas",
-		],
-		year: "2025",
-		client: "Nexo Fintech",
-	},
-	{
 		slug: "amanal",
 		title: "Amanal",
 		category: "Landing Page",
@@ -122,7 +116,8 @@ export const projects: Project[] = [
 			"Diseñamos una landing page de lanzamiento para Amanal que combina micro-interacciones sofisticadas con un scroll narrativo que revela progresivamente las características del producto, generando anticipación y deseo.",
 		tags: ["Astro", "Tailwind CSS", "Lenis"],
 		accent: "primary",
-		image: "/projects/amanal.webp",
+		image: landingAmanal.src,
+		images: [landingAmanal, infoAmanal, ubicacionAmanal],
 		featured: true,
 		challenge:
 			"Amanal lanzaba un nuevo producto al mercado y necesitaba una presencia digital que generara impacto inmediato y capturara leads cualificados desde el primer día.",
@@ -135,5 +130,28 @@ export const projects: Project[] = [
 		],
 		year: "2025",
 		client: "Amanal",
+		url: "https://amanal.netlify.app/",
+	},
+	{
+		slug: "sentiment-unicornio",
+		title: "Sentiment Unicornio",
+		category: "Social listening",
+		description:
+			"Plataforma que identifica cambios, narrativas, percepción, actores, riesgos y oportunidades en la conversación.",
+		longDescription:
+			"Unicornio reúne menciones, tono y señales editoriales en un tablero para ver qué está ocurriendo y qué merece atención.",
+		tags: ["Social listening", "Dashboard", "Analítica"],
+		accent: "neon",
+		image: landingSentiment.src,
+		images: [landingSentiment, dashboardSentiment, dashboard2Sentiment],
+		featured: true,
+		challenge:
+			"Hacía falta un lugar donde leer el volumen, el tono y las menciones editoriales de una marca sin saltar entre fuentes.",
+		solution:
+			"Un tablero de escucha social con menciones, sentimiento y las publicaciones que concentran la conversación.",
+		results: [],
+		year: "2026",
+		client: "Unicornio",
+		url: "https://sociallisteningunicornio.com/",
 	},
 ];

@@ -19,3 +19,4 @@ Guía para agentes de código (Claude Code, etc.) en este repositorio. El detall
 | Secciones y páginas | [docs/specs/paginas.md](docs/specs/paginas.md) |
 | Modelo `Project` | [docs/specs/datos-proyectos.md](docs/specs/datos-proyectos.md) |
 | Lint, hooks, commits | [docs/guias/calidad-de-codigo.md](docs/guias/calidad-de-codigo.md) |
+| Agenda `/agenda`, horarios, Google Calendar | [docs/guias/agenda.md](docs/guias/agenda.md) |

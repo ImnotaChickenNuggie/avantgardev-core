@@ -6,32 +6,37 @@ const menuItems = [
 	{
 		label: "Servicios",
 		ariaLabel: "Ver servicios",
-		link: "#servicios",
+		link: "/#servicios",
 	},
 	{
 		label: "Manifiesto",
 		ariaLabel: "Ir a manifiesto",
-		link: "#manifiesto",
+		link: "/#manifiesto",
 	},
 	{
 		label: "Metodología",
 		ariaLabel: "Ver metodología",
-		link: "#metodologia",
+		link: "/#metodologia",
 	},
 	{
 		label: "Proyectos",
 		ariaLabel: "Ver proyectos",
-		link: "#proyectos",
+		link: "/#proyectos",
 	},
 	{
 		label: "FAQs",
 		ariaLabel: "Preguntas frecuentes",
-		link: "#faqs",
+		link: "/#faqs",
+	},
+	{
+		label: "Agenda",
+		ariaLabel: "Agendar una llamada",
+		link: "/agenda",
 	},
 	{
 		label: "Conectemos",
 		ariaLabel: "Ir a contacto",
-		link: "#contacto",
+		link: "/#contacto",
 	},
 ];
 
