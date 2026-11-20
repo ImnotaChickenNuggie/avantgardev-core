@@ -1,0 +1,39 @@
+---
+import Booking from "../components/Booking";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout
+	title="Agenda una llamada — Avantgardev"
+	description="Agenda una llamada de 30 minutos con Avantgardev. Elige día y hora y recibe el enlace de Google Meet."
+>
+	<Navbar />
+	<main>
+		<section class="relative overflow-hidden bg-surface pt-28 pb-26 lg:pt-36 lg:pb-38">
+			<span class="strand-node" aria-hidden="true"></span>
+			<div
+				class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(57,255,20,0.03),transparent_50%)]"
+			>
+			</div>
+
+			<div class="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+				<div class="reveal">
+					<h1 class="font-heading text-4xl font-black tracking-tight text-text sm:text-5xl lg:text-6xl">
+						AGENDA<br />UNA <span class="text-neon-ink">LLAMADA</span>
+					</h1>
+					<p class="mt-6 max-w-md text-lg leading-relaxed text-muted">
+						30 minutos para ver si tiene sentido trabajar juntos. Elige un hueco entre semana y te llega el enlace de Meet.
+					</p>
+				</div>
+
+				<div class="reveal w-full max-w-xl">
+					<Booking client:visible />
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
