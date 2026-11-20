@@ -19,7 +19,13 @@ interface Project {
   year: string;
   client: string;
   url?: string;          // Enlace externo opcional
+  links?: { href: string; label: string }[];
+  seoTitle?: string;     // <title> (≤60 car.); si falta: "{title} — Avantgardev"
+  subtitle?: string;     // Bajo el H1, con la palabra clave del caso
+  alts?: string[];       // Alt por captura, mismo orden que `images`
+  steps?: { title: string; body: string }[]; // "Cómo funciona" (+ stepsNote)
+  sections?: { title: string; body: string }[]; // H2/H3 extra del caso
 }
 ```
 
-Proyectos actuales: **Vazza** (e-commerce), **Capital Humano** (plataforma de RH), **Magnapelle** (sitio corporativo), **Amanal** (landing page). Los logos de marca están en `src/assets/brands/`; las portadas en `public/projects/`.
+Proyectos actuales: **Vazza** (fintech / PWA de crédito personal), **Capital Humano** (plataforma de RH), **Magnapelle** (sitio corporativo), **Amanal** (landing page). Los logos de marca están en `src/assets/brands/`; las capturas (`images`) en `src/assets/` en formato `.webp` (`scripts/to-webp.ts` convierte PNG a webp) y se renderizan con `<Image>` de `astro:assets`.

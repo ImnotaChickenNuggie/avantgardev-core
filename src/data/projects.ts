@@ -1,13 +1,13 @@
 import type { ImageMetadata } from "astro";
-import dashboardSentiment from "../assets/dashboard_sentiment.png";
-import dashboard2Sentiment from "../assets/dashboard2_sentiment.png";
-import infoAmanal from "../assets/info_amanal.png";
-import landingAmanal from "../assets/landing_amanal.png";
-import landingSentiment from "../assets/landing_sentiment.png";
-import ubicacionAmanal from "../assets/ubicacion_amanal.png";
-import vazza from "../assets/vazza.png";
-import vazzaDashboard from "../assets/vazza_dashboard.png";
-import vazzaTickets from "../assets/vazza_tickets.png";
+import dashboardSentiment from "../assets/dashboard_sentiment.webp";
+import dashboard2Sentiment from "../assets/dashboard2_sentiment.webp";
+import infoAmanal from "../assets/info_amanal.webp";
+import landingAmanal from "../assets/landing_amanal.webp";
+import landingSentiment from "../assets/landing_sentiment.webp";
+import ubicacionAmanal from "../assets/ubicacion_amanal.webp";
+import vazza from "../assets/vazza.webp";
+import vazzaDashboard from "../assets/vazza_dashboard.webp";
+import vazzaTickets from "../assets/vazza_tickets.webp";
 
 export interface Project {
 	slug: string;
@@ -27,31 +27,114 @@ export interface Project {
 	client: string;
 	url?: string;
 	links?: { href: string; label: string }[];
+	/** Título SEO (≤60 caracteres). Si falta se usa `${title} — Avantgardev`. */
+	seoTitle?: string;
+	/** Subtítulo bajo el H1 con la palabra clave del caso. */
+	subtitle?: string;
+	/** Texto alternativo por captura, en el mismo orden que `images`. */
+	alts?: string[];
+	/** Secciones extra del caso de estudio (H2 + párrafo). */
+	sections?: {
+		title: string;
+		body: string;
+		icon?: "credit" | "bag" | "clock" | "phone" | "cash";
+	}[];
+	/** Pasos del flujo ("Cómo funciona"), con nota opcional al final. */
+	steps?: { title: string; body: string }[];
+	stepsNote?: string;
+	/** Pie de foto por captura, mismo orden que `images`. */
+	captions?: string[];
+	/** Datos clave en chips, bajo el hero. */
+	highlights?: { value: string; label: string }[];
 }
 
 export const projects: Project[] = [
 	{
 		slug: "vazza",
 		title: "Vazza",
-		category: "E-commerce",
+		category: "Fintech / PWA",
+		seoTitle: "Vazza: app de crédito personal y PWA | Avantgardev",
+		subtitle: "App de crédito personal para zapaterías, instalable como PWA",
 		description:
-			"Plataforma de comercio electrónico con experiencia inmersiva de producto y checkout optimizado para conversión.",
+			"Desarrollo de PWA fintech para Vazza: crédito personal, compras a meses sin intereses, historial de pagos y cobros con NetPay en OXXO.",
 		longDescription:
-			"Diseñamos y desarrollamos una plataforma e-commerce completa para Vazza, enfocada en ofrecer una experiencia de compra premium. Cada detalle del flujo de usuario fue optimizado para maximizar conversiones sin sacrificar la estética de marca.",
-		tags: ["Next.js", "Stripe", "Tailwind CSS"],
+			"Una PWA donde los clientes de Vazza consultan su crédito personal, compran a meses sin intereses y pagan sus mensualidades desde el teléfono.",
+		tags: ["React", "Vite", "PWA", "Django", "NetPay"],
 		accent: "neon",
 		image: vazza.src,
 		images: [vazza, vazzaDashboard, vazzaTickets],
+		alts: [
+			"Pantalla de inicio de sesión de la app de crédito Vazza con teléfono y contraseña",
+			"Panel principal de la app Vazza con crédito personal, crédito Vazza, movimientos y tarjeta digital",
+			"Historial de movimientos y pagos de la app Vazza con folios y estatus de cada pago",
+		],
 		featured: true,
 		challenge:
-			"Vazza necesitaba una plataforma que reflejara la calidad premium de sus productos con un checkout rápido y sin fricciones, manteniendo una experiencia visual inmersiva.",
+			"Vazza quería darle a sus clientes un canal propio para administrar su crédito: ver su línea, comprar en cualquier sucursal y pagar sin cuenta bancaria. Debía funcionar en teléfonos de gama media y sin pasar por una tienda de apps.",
 		solution:
-			"Implementamos un catálogo con renderizado 3D de productos, un sistema de carrito optimista y un flujo de checkout en un solo paso integrado con Stripe para pagos seguros.",
-		results: [
-			"Incremento del 40% en tasa de conversión",
-			"Reducción del 60% en tiempo de carga",
-			"Experiencia móvil calificada 95/100 en Lighthouse",
+			"Una PWA en React y Vite que se instala desde el navegador, con un backend en Django que consulta el Buró de Crédito para valuar cada línea. Los pagos se generan con NetPay para liquidarse en OXXO.",
+		highlights: [
+			{ value: "PWA", label: "Se instala en el teléfono" },
+			{ value: "100%", label: "De los usuarios con crédito" },
+			{ value: "OXXO", label: "Pagos en efectivo con NetPay" },
 		],
+		captions: [
+			"Acceso con número de teléfono",
+			"Panel con créditos, movimientos y tarjeta digital",
+			"Historial de movimientos y pagos con folio y estatus",
+		],
+		sections: [
+			{
+				icon: "credit",
+				title: "Crédito para todos los usuarios",
+				body: "Consulta directa al Buró de Crédito para valuar el monto. Válido en todas las sucursales Vazza.",
+			},
+			{
+				icon: "bag",
+				title: "Meses sin intereses",
+				body: "Zapatos, tenis y más a meses sin intereses, con promociones exclusivas en la app.",
+			},
+			{
+				icon: "clock",
+				title: "Historial de compras y pagos",
+				body: "Cada movimiento con fecha, importe, folio y estatus (en proceso, aplicado o devuelto).",
+			},
+			{
+				icon: "phone",
+				title: "PWA instalable",
+				body: "Se agrega a la pantalla de inicio y se abre como app, sin tienda de aplicaciones.",
+			},
+			{
+				icon: "cash",
+				title: "Pagos con NetPay en OXXO",
+				body: "Referencias de pago para liquidar en efectivo, aunque no tengas tarjeta.",
+			},
+		],
+		results: [
+			"Crédito personal único, válido en todas las tiendas y sucursales Vazza",
+			"App instalable en el teléfono, sin descargas desde tiendas de aplicaciones",
+			"Pago de mensualidades en efectivo en OXXO con NetPay e historial consultable",
+		],
+		steps: [
+			{
+				title: "Valuamos tu crédito",
+				body: "Al registrarte se consulta el Buró de Crédito y se define el monto que se te otorga.",
+			},
+			{
+				title: "Compras a meses",
+				body: "Usas tu crédito en cualquier tienda o sucursal Vazza, a meses sin intereses.",
+			},
+			{
+				title: "Pagas en OXXO",
+				body: "NetPay genera la referencia y pagas en efectivo, sin necesitar tarjeta.",
+			},
+			{
+				title: "Consultas todo",
+				body: "Cada compra y cada pago queda en tu historial, con folio y estatus.",
+			},
+		],
+		stepsNote:
+			"Se eligió una PWA para llegar a más clientes con un solo desarrollo: carga rápida, actualizaciones automáticas y sin pasar por una tienda de aplicaciones.",
 		year: "2025",
 		client: "Vazza",
 		links: [

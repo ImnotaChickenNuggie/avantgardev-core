@@ -6,11 +6,17 @@ import SmoothScroll from "../components/SmoothScroll";
 interface Props {
 	title?: string;
 	description?: string;
+	ogTitle?: string;
+	ogImage?: string;
+	jsonLd?: Record<string, unknown>[];
 }
 
 const {
 	title = "Avantgardev | Desarrollo Web, Diseño y Marketing en México",
 	description = "Creamos sitios web a la medida, diseño de marca y estrategias de marketing digital para negocios en México. Sin plantillas. Cotiza sin costo.",
+	ogTitle = "Avantgardev — Desarrollo Web de Vanguardia",
+	ogImage = "https://avantgardev.com.mx/og-image.png",
+	jsonLd = [],
 } = Astro.props;
 
 const path = Astro.url.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "");
@@ -59,18 +65,18 @@ const canonical = new URL(path, Astro.site).href;
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Avantgardev — Desarrollo Web de Vanguardia" />
+	<meta property="og:title" content={ogTitle} />
 	<meta property="og:description" content={description} />
-	<meta property="og:image" content="https://avantgardev.com.mx/og-image.png" />
+	<meta property="og:image" content={ogImage} />
 	<meta property="og:image:alt" content="Avantgardev: desarrollo web, diseño y marketing digital" />
 	<meta property="og:url" content={canonical} />
 	<meta property="og:locale" content="es_MX" />
 
 	<!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Avantgardev — Desarrollo Web de Vanguardia" />
+	<meta name="twitter:title" content={ogTitle} />
 	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content="https://avantgardev.com.mx/og-image.png" />
+	<meta name="twitter:image" content={ogImage} />
 
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-BGC53R068L"></script>
@@ -82,6 +88,8 @@ const canonical = new URL(path, Astro.site).href;
 			gtag('config', 'G-BGC53R068L');
 		});
 	</script>
+
+	{jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
 
 	<!-- Organization Schema -->
 	<script type="application/ld+json" set:html={JSON.stringify({

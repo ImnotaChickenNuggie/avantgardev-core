@@ -1,4 +1,5 @@
 ---
+import { getImage, Image } from "astro:assets";
 import Navbar from "../../components/Navbar.astro";
 import { projects } from "../../data/projects";
 import Layout from "../../layouts/Layout.astro";
@@ -17,11 +18,63 @@ const shots = project.images ?? [];
 const cover = shots[0];
 const gallery = shots.slice(1);
 const links = project.links ?? (project.url ? [{ href: project.url, label: "Visitar sitio" }] : []);
+const sections = project.sections ?? [];
+const steps = project.steps ?? [];
+const highlights = project.highlights ?? [];
+const icons: Record<string, string> = {
+	credit:
+		"M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z",
+	bag: "M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z",
+	clock: "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+	phone:
+		"M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3",
+	cash: "M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
+};
+const related = projects.filter((p) => p.slug !== project.slug).slice(0, 2);
+const pageTitle = project.seoTitle ?? `${project.title} — Avantgardev`;
+const pageUrl = new URL(`/proyecto/${project.slug}`, Astro.site).href;
+const ogImage = cover
+	? new URL((await getImage({ src: cover, width: 1200, format: "jpg" })).src, Astro.site).href
+	: undefined;
+
+const jsonLd: Record<string, unknown>[] = [
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{ "@type": "ListItem", position: 1, name: "Inicio", item: new URL("/", Astro.site).href },
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Proyectos",
+				item: new URL("/#proyectos", Astro.site).href,
+			},
+			{ "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
+		],
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "CreativeWork",
+		name: pageTitle,
+		headline: project.subtitle ?? project.title,
+		description: project.description,
+		url: pageUrl,
+		inLanguage: "es-MX",
+		dateCreated: project.year,
+		keywords: project.tags.join(", "),
+		...(ogImage && { image: ogImage }),
+		creator: { "@id": "https://avantgardev.com.mx/#organization" },
+		about: { "@type": "Organization", name: project.client },
+	},
+];
 ---
 
 <Layout
-	title={`${project.title} — Avantgardev`}
+	title={pageTitle}
 	description={project.description}
+	ogTitle={pageTitle}
+	ogImage={ogImage}
+	jsonLd={jsonLd}
 >
 	<Navbar />
 
@@ -72,6 +125,19 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 						>
 							{project.title.toUpperCase()}
 						</h1>
+
+						{
+							project.subtitle && (
+								<p
+									class:list={[
+										"mb-5 max-w-xl font-sans text-xl font-medium leading-snug sm:text-2xl",
+										isNeon ? "text-neon-ink" : "text-primary-ink",
+									]}
+								>
+									{project.subtitle}
+								</p>
+							)
+						}
 
 						<p class="mb-8 max-w-xl text-lg leading-relaxed text-muted">
 							{project.longDescription}
@@ -130,16 +196,18 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 
 					<div>
 						<div
-							class="cut-corner relative aspect-[4/3] overflow-hidden bg-surface-2"
+							class="cut-corner relative aspect-[2/1] overflow-hidden bg-surface-2"
 							transition:name={`project-image-${project.slug}`}
 						>
 							{
 								cover ? (
-									<img
-										src={cover.src}
-										alt={`Captura de ${project.title}`}
-										width={cover.width}
-										height={cover.height}
+									<Image
+										src={cover}
+										alt={project.alts?.[0] ?? `Captura de ${project.title}`}
+										widths={[640, 960, 1280, 1600, 1920]}
+										quality={92}
+										sizes="(min-width: 1024px) 560px, 100vw"
+										loading="eager"
 										class="absolute inset-0 size-full object-cover object-top"
 									/>
 								) : (
@@ -167,34 +235,32 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 								)
 							}
 						</div>
-						{
-							gallery.length > 0 && (
-								<ul class="mt-4 grid gap-4">
-									{gallery.map((shot) => (
-										<li class="cut-corner overflow-hidden bg-surface-2">
-											<img
-												src={shot.src}
-												alt={`Captura de ${project.title}`}
-												width={shot.width}
-												height={shot.height}
-												class="w-full object-cover object-top"
-											/>
-										</li>
-									))}
-								</ul>
-							)
-						}
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section class="relative bg-surface py-26 lg:py-38">
+		{
+			highlights.length > 0 && (
+				<section class="border-y border-line bg-surface/40">
+					<ul class="mx-auto grid max-w-7xl gap-px px-6 sm:grid-cols-3">
+						{highlights.map((item) => (
+							<li class="py-8 sm:px-6 sm:first:pl-0">
+								<span class:list={["block font-heading text-4xl font-black", isNeon ? "text-neon-ink" : "text-primary-ink"]}>{item.value}</span>
+								<span class="mt-1 block text-sm text-muted">{item.label}</span>
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+
+		<section class="relative py-26 lg:py-38">
 			<div class="relative mx-auto max-w-7xl px-6">
 				<div class="grid gap-16 lg:grid-cols-2 lg:gap-18">
 					<div class="reveal border-t border-line pt-8">
-						<h2 class="mb-6 font-heading text-3xl font-black tracking-tight text-text sm:text-4xl">
-							EL DESAFÍO
+						<h2 class="mb-6 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl">
+							El desafío
 						</h2>
 						<p class="text-base leading-relaxed text-muted lg:text-lg">{project.challenge}</p>
 					</div>
@@ -202,11 +268,11 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 					<div class="reveal border-t border-line pt-8">
 						<h2
 							class:list={[
-								"mb-6 font-heading text-3xl font-black tracking-tight sm:text-4xl",
+								"mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl",
 								isNeon ? "text-neon-ink" : "text-primary-ink",
 							]}
 						>
-							LA SOLUCIÓN
+							La solución
 						</h2>
 						<p class="text-base leading-relaxed text-muted lg:text-lg">{project.solution}</p>
 					</div>
@@ -215,11 +281,108 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 		</section>
 
 		{
+			gallery.length > 0 && (
+				<section class="relative py-26 lg:py-38">
+					<div class="relative mx-auto max-w-7xl px-6">
+						<h2 class="reveal mb-12 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl">
+							La app por dentro
+						</h2>
+						<ul class="grid gap-6 md:grid-cols-2">
+							{gallery.map((shot, i) => (
+								<li class="reveal">
+									<figure>
+										<div class="cut-corner overflow-hidden bg-surface-2">
+											<Image
+												src={shot}
+												alt={project.alts?.[i + 1] ?? `Captura de ${project.title}`}
+												widths={[640, 960, 1280, 1600, 1920]}
+												quality={92}
+												sizes="(min-width: 1024px) 600px, 100vw"
+												loading="lazy"
+												class="w-full"
+											/>
+										</div>
+										{project.captions?.[i + 1] && (
+											<figcaption class="mt-3 text-sm text-muted">{project.captions[i + 1]}</figcaption>
+										)}
+									</figure>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+			)
+		}
+
+		{
+			sections.length > 0 && (
+				<section class="relative bg-surface py-26 lg:py-38">
+					<div class="relative mx-auto max-w-7xl px-6">
+						<h2 class="reveal mb-12 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl">
+							Qué hace la plataforma
+						</h2>
+						<ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+							{sections.map((item) => (
+								<li class="reveal rounded-sm border border-line bg-bg/40 p-7">
+									{item.icon && (
+										<span
+											class:list={[
+												"mb-5 flex size-11 items-center justify-center rounded-sm border",
+												isNeon ? "border-neon/40 text-neon-ink" : "border-primary/40 text-primary-ink",
+											]}
+										>
+											<svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+												<path stroke-linecap="round" stroke-linejoin="round" d={icons[item.icon]} />
+											</svg>
+										</span>
+									)}
+									<h3 class="mb-2 font-sans text-lg font-semibold text-text">{item.title}</h3>
+									<p class="text-sm leading-relaxed text-muted">{item.body}</p>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+			)
+		}
+
+		{
+			steps.length > 0 && (
+				<section class="relative py-26 lg:py-38">
+					<div class="relative mx-auto max-w-7xl px-6">
+						<h2 class="reveal mb-12 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl">
+							Cómo funciona
+						</h2>
+						<ol class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+							{steps.map((item, i) => (
+								<li class="reveal border-t border-line pt-6">
+									<span
+										class:list={[
+											"mb-4 block font-mono text-sm font-medium",
+											isNeon ? "text-neon-ink" : "text-primary-ink",
+										]}
+									>
+										{String(i + 1).padStart(2, "0")}
+									</span>
+									<h3 class="mb-2 font-sans text-lg font-semibold text-text">{item.title}</h3>
+									<p class="text-sm leading-relaxed text-muted">{item.body}</p>
+								</li>
+							))}
+						</ol>
+						{project.stepsNote && (
+							<p class="reveal mt-12 max-w-2xl text-base leading-relaxed text-muted">{project.stepsNote}</p>
+						)}
+					</div>
+				</section>
+			)
+		}
+
+		{
 			project.results.length > 0 && (
 		<section class="relative py-26 lg:py-38">
 			<div class="relative mx-auto max-w-7xl px-6">
-				<h2 class="reveal mb-14 font-heading text-3xl font-black tracking-tight text-text sm:text-4xl lg:text-5xl">
-					IMPACTO REAL
+				<h2 class="reveal mb-14 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl">
+					Impacto real
 				</h2>
 
 				<ul class="reveal grid gap-6 sm:grid-cols-3">
@@ -251,18 +414,40 @@ const links = project.links ?? (project.url ? [{ href: project.url, label: "Visi
 			)
 		}
 
+		<section class="relative py-18 lg:py-26">
+			<div class="relative mx-auto max-w-7xl px-6">
+				<h2 class="mb-8 font-sans text-2xl font-bold tracking-tight text-text sm:text-3xl">
+					Otros proyectos
+				</h2>
+				<ul class="grid gap-4 sm:grid-cols-2">
+					{related.map((item) => (
+						<li>
+							<a
+								href={`/proyecto/${item.slug}`}
+								class="block rounded-sm border border-line p-6 transition-colors hover:border-neon/60"
+							>
+								<span class="mb-2 block font-mono text-2xs tracking-[0.2em] text-muted uppercase">{item.category}</span>
+								<span class="block font-sans text-xl font-semibold text-text">{item.title}</span>
+								<span class="mt-2 block text-sm text-muted">{item.description}</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+
 		<section class="relative border-t border-line bg-surface py-18 lg:py-26">
 			<div class="mx-auto max-w-4xl px-6 text-center">
-				<h2 class="mb-8 font-heading text-3xl font-black tracking-tight text-text sm:text-4xl lg:text-5xl">
-					HAGAMOS ALGO<br />
-					<span class:list={[isNeon ? "text-neon-ink" : "text-primary-ink"]}>EXTRAORDINARIO</span>
+				<h2 class="mb-8 font-sans text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl">
+					Hagamos algo<br />
+					<span class:list={[isNeon ? "text-neon-ink" : "text-primary-ink"]}>extraordinario</span>
 				</h2>
 				<div class="flex flex-wrap items-center justify-center gap-4">
 					<a
-						href="/#contacto"
+						href="/agenda"
 						class="hud-scan cut-corner group inline-flex items-center gap-2 bg-primary px-7 py-3.5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:bg-primary-hover"
 					>
-						Iniciar proyecto
+						Agenda una llamada
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							class="size-4 transition-transform group-hover:translate-x-0.5"
