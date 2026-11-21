@@ -471,7 +471,6 @@ export default function Booking() {
 										onBlur={() => setTouched((current) => ({ ...current, phone: true }))}
 										invalid={touched.phone && Boolean(phoneError)}
 										placeholder="55 1234 5678"
-										inputClassName={fieldClass}
 									/>
 									{touched.phone && phoneError && (
 										<p className="mt-1.5 text-xs text-danger">{phoneError}</p>

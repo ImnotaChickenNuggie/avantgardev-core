@@ -584,28 +584,3 @@ table,
 		transition: none;
 	}
 }
-
-/* Phone input (react-phone-number-input) */
-.PhoneInput {
-	display: flex;
-	align-items: stretch;
-	gap: 0.5rem;
-	--PhoneInputCountrySelectArrow-color: var(--color-muted);
-	--PhoneInputCountrySelectArrow-opacity: 0.8;
-	--PhoneInputCountryFlag-borderColor: transparent;
-}
-.PhoneInputCountry {
-	margin: 0;
-	padding: 0 0.75rem;
-	border: 1px solid var(--color-line-strong);
-	border-radius: 0.125rem;
-	background: var(--color-bg);
-	transition: border-color 0.2s;
-}
-.PhoneInputCountry:focus-within {
-	border-color: var(--color-primary);
-}
-.PhoneInputInput {
-	min-width: 0;
-	flex: 1;
-}
