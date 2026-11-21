@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_RECAPTCHA_SITE_KEY"
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_RECAPTCHA_SITE_KEY,GOOGLE_CALENDAR_ID"
 
 [functions]
   directory = "netlify/functions"
