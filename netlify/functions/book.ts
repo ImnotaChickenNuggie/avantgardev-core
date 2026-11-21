@@ -24,7 +24,12 @@ function json(body: unknown, status: number) {
 	});
 }
 
-async function verifyCaptcha(token: string): Promise<boolean> {
+interface CaptchaResult {
+	passed: boolean;
+	reason?: string;
+}
+
+async function verifyCaptcha(token: string): Promise<CaptchaResult> {
 	const secret = process.env.RECAPTCHA_SECRET_KEY;
 	if (!secret) throw new Error("RECAPTCHA_SECRET_KEY not configured");
 
@@ -35,17 +40,13 @@ async function verifyCaptcha(token: string): Promise<boolean> {
 	});
 
 	const data = (await response.json()) as RecaptchaResponse;
-	const passed = data.success && (data.score ?? 0) >= 0.5 && data.action === "book";
-	if (!passed) {
-		console.error("reCAPTCHA rechazado", {
-			success: data.success,
-			score: data.score,
-			action: data.action,
-			hostname: data.hostname,
-			errors: data["error-codes"],
-		});
-	}
-	return passed;
+	if (data.success && (data.score ?? 0) >= 0.5 && data.action === "book") return { passed: true };
+
+	const reason = data.success
+		? `score=${data.score ?? "n/a"} action=${data.action ?? "n/a"} hostname=${data.hostname ?? "n/a"}`
+		: `google: ${(data["error-codes"] ?? ["sin-codigo"]).join(",")}`;
+	console.error("reCAPTCHA rechazado", reason);
+	return { passed: false, reason };
 }
 
 function readPayload(body: unknown): {
@@ -104,9 +105,9 @@ export default async (req: Request, _context: Context) => {
 		const body = await req.json();
 		const { name, email, phone, note, start, captchaToken } = readPayload(body);
 
-		const isHuman = await verifyCaptcha(captchaToken);
-		if (!isHuman) {
-			return json({ error: "Verificacion de captcha fallida" }, 403);
+		const captcha = await verifyCaptcha(captchaToken);
+		if (!captcha.passed) {
+			return json({ error: "Verificacion de captcha fallida", reason: captcha.reason }, 403);
 		}
 
 		const { timeMin, timeMax } = slotRange();
