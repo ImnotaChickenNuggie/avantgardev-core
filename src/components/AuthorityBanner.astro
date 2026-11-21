@@ -2,12 +2,16 @@
 import amanal from "../assets/brands/amanal.webp";
 import capitalHumano from "../assets/brands/capital-humano.webp";
 import magnapelle from "../assets/brands/magnapelle.webp";
+import prismaCare from "../assets/brands/prisma-care-logo-negro.webp";
+import unicornio from "../assets/brands/unicornio-logo-light.webp";
 import vazza from "../assets/brands/vazza.webp";
 
 const _brands = [
 	{ src: capitalHumano, alt: "Capital Humano" },
 	{ src: amanal, alt: "Amanal" },
 	{ src: magnapelle, alt: "Magnapelle" },
+	{ src: prismaCare, alt: "Prisma Care", ink: "dark" },
+	{ src: unicornio, alt: "Unicornio" },
 	{ src: vazza, alt: "Vazza" },
 ];
 ---
@@ -36,18 +40,21 @@ const _brands = [
 		</div>
 
 		<div
-			class='flex animate-marquee items-center gap-16 group-hover:paused'
+			class='flex w-max animate-marquee items-center gap-16'
 		>
 			{
 				[...Array(6)].map((_, copy) => (
 					<div class='flex shrink-0 items-center gap-16' aria-hidden={copy > 0 ? "true" : undefined}>
-						{_brands.map(({ src, alt }) => (
+						{_brands.map(({ src, alt, ink }) => (
 							<img
 								src={src.src}
 								alt={copy > 0 ? "" : alt}
 								width={120}
 								height={72}
-								class='h-12 w-[120px] object-contain select-none grayscale dark:opacity-40 dark:invert-0 opacity-60 invert'
+								class:list={[
+									"h-12 w-[120px] object-contain select-none grayscale opacity-60 dark:opacity-40",
+									ink === "dark" ? "dark:invert" : "invert dark:invert-0",
+								]}
 							/>
 						))}
 					</div>

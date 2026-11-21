@@ -16,6 +16,18 @@ Orden de secciones: **Navbar → Hero → AuthorityBanner → Services → Manif
 | FAQs | `FAQs.astro` + `FAQSection.tsx` | FAQ en acordeón (acordeón de Base UI, isla React) |
 | Contact | `Contact.astro` + `ContactForm.tsx` | Formulario de contacto conectado al endpoint de Resend |
 
+## Agenda (`src/pages/agenda.astro`)
+
+Página para reservar una llamada de 30 minutos. No es una sección de la home.
+
+1. **Calendario** — días con hueco dentro del horizonte. Lun–vie 10:00–18:00, sáb–dom cerrados. La config vive en `src/data/booking.ts`.
+2. **Hora** — slots de 30 min que no chocan con el Google Calendar personal (`freeBusy`).
+3. **Datos** — nombre, email, nota opcional, reCAPTCHA. La function `book` crea el evento con enlace de Google Meet.
+
+Navbar y menú móvil enlazan a `/agenda`. El footer está en `Footer.astro` (home y agenda).
+
+Conexión de la cuenta y cómo cambiar días u horas: [guía de agenda](../guias/agenda.md).
+
 ## Detalle de proyecto (`src/pages/proyecto/[slug].astro`)
 
 Páginas dinámicas generadas en build con `getStaticPaths()` desde `src/data/projects.ts` (ver [datos de proyectos](datos-proyectos.md)). Cuatro secciones:

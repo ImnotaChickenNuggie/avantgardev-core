@@ -195,6 +195,17 @@
 	}
 }
 
+/* Pausa al posar el cursor (o el dedo) para leer los logos. */
+@media (hover: hover) and (pointer: fine) {
+	.group:hover .animate-marquee {
+		animation-play-state: paused;
+	}
+}
+
+.group:active .animate-marquee {
+	animation-play-state: paused;
+}
+
 /* ══════════════════════════════════════════════════════════════
    COLOR — base fría desaturada (HUD) + acentos de marca
    Estrategia: Restrained. Neutros azul-acero; morado = acción,

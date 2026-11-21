@@ -9,11 +9,12 @@ import MobileMenu from "./MobileMenu";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
-	{ href: "#servicios", label: "Servicios" },
-	{ href: "#manifiesto", label: "Manifiesto" },
-	{ href: "#metodologia", label: "Metodología" },
-	{ href: "#proyectos", label: "Proyectos" },
-	{ href: "#faqs", label: "FAQ's" },
+	{ href: "/#servicios", label: "Servicios" },
+	{ href: "/#manifiesto", label: "Manifiesto" },
+	{ href: "/#metodologia", label: "Metodología" },
+	{ href: "/#proyectos", label: "Proyectos" },
+	{ href: "/#faqs", label: "FAQ's" },
+	{ href: "/agenda", label: "Agenda" },
 ];
 ---
 
@@ -51,7 +52,7 @@ const links = [
 		<div class='hidden items-center gap-3 md:flex'>
 			<ThemeToggle client:load />
 			<a
-				href='#contacto'
+				href='/#contacto'
 				class='rounded-sm border border-neon/40 px-5 py-2 text-sm font-semibold tracking-widest text-neon-ink uppercase transition-all hover:border-neon hover:bg-neon/10 hover:shadow-glow-neon'
 			>
 				CONECTEMOS

@@ -19,7 +19,7 @@ Artesanía digital con transparencia radical y soberanía tecnológica del clien
 Sitio estático Astro 7 + islas React, desplegado en Netlify, formulario de contacto vía Resend. Un solo idioma (español es-MX; traducción a inglés prevista más adelante). Dos temas (claro/oscuro) con alternancia manual y preferencia del SO.
 
 ## Capabilities and Constraints
-- Rutas: `/` y `/proyecto/[slug]` (Vazza, Capital Humano, Magnapelle, Nexo, Amanal), generadas desde `src/data/projects.ts`.
+- Rutas: `/` y `/proyecto/[slug]` (Vazza, Capital Humano, Magnapelle, Amanal, Sentiment Unicornio), generadas desde `src/data/projects.ts`.
 - Hero con fondo ColorBends (shader Three.js) que debe conservarse intacto.
 - Pendiente de decidir: traducción a inglés y estructura i18n.
 

@@ -5,9 +5,10 @@
 
 | Directiva | Componentes |
 |-----------|-------------|
-| `client:idle` | SmoothScroll, ContactForm |
-| `client:only="react"` | CursorWrapper (necesita el DOM de inmediato, sin SSR) |
-| `client:load` | MobileMenu, ThemeToggle, FAQSection |
+| `client:idle` | SmoothScroll |
+| `client:visible` | ContactForm, FAQSection, Booking (`/agenda`) |
+| `client:only="react"` | CursorWrapper, MobileMenu |
+| `client:load` | ThemeToggle |
 
 Las directivas `client:*` van en el `.astro` que usa el componente, no dentro del `.tsx`.
 

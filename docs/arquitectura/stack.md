@@ -13,6 +13,7 @@
 ## Variables de entorno
 
 - `RESEND_API_KEY` — requerida para el envío de correo del formulario de contacto.
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `GOOGLE_CALENDAR_ID` — agenda (`/agenda`). Ver [guía de agenda](../guias/agenda.md).
 
 ## Comandos
 
