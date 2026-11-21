@@ -16,6 +16,8 @@ export interface BookingConfig {
 	weekly: Record<Weekday, TimeWindow[]>;
 	/** Fechas `YYYY-MM-DD` en `timezone` que no se ofrecen. */
 	blockedDates: string[];
+	/** Si es true, tampoco se ofrecen los días festivos de México (ver `src/lib/holidays.ts`). */
+	blockMexicanHolidays: boolean;
 }
 
 export const bookingConfig: BookingConfig = {
@@ -34,4 +36,5 @@ export const bookingConfig: BookingConfig = {
 		sun: [],
 	},
 	blockedDates: [],
+	blockMexicanHolidays: true,
 };
