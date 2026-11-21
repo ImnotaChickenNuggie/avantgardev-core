@@ -24,8 +24,11 @@ interface Project {
   subtitle?: string;     // Bajo el H1, con la palabra clave del caso
   alts?: string[];       // Alt por captura, mismo orden que `images`
   steps?: { title: string; body: string }[]; // "Cómo funciona" (+ stepsNote)
-  sections?: { title: string; body: string }[]; // H2/H3 extra del caso
+  sections?: { title: string; body: string; icon?: string }[]; // iconos: credit|bag|clock|phone|cash|sparkles|pin|ticket|users|code|chart|bell|face|search
+  sectionsTitle?: string; // H2 de sections (def. "Qué hace la plataforma")
+  stepsTitle?: string;    // H2 de steps (def. "Cómo funciona")
+  resultsTitle?: string;  // H2 de results (def. "Impacto real")
 }
 ```
 
-Proyectos actuales: **Vazza** (fintech / PWA de crédito personal), **Capital Humano** (plataforma de RH), **Magnapelle** (sitio corporativo), **Amanal** (landing page). Los logos de marca están en `src/assets/brands/`; las capturas (`images`) en `src/assets/` en formato `.webp` (`scripts/to-webp.ts` convierte PNG a webp) y se renderizan con `<Image>` de `astro:assets`.
+Proyectos actuales: **Vazza** (fintech / PWA de crédito personal), **Capital Humano** (plataforma de RH), **Magnapelle** (sitio corporativo), **Amanal** (landing de hackathon, proyecto propio hecho en ~8 h como prueba de equipo; no es plazo de entrega a clientes). Los logos de marca están en `src/assets/brands/`; las capturas (`images`) en `src/assets/` en formato `.webp` (`scripts/to-webp.ts` convierte PNG a webp) y se renderizan con `<Image>` de `astro:assets`.

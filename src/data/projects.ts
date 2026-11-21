@@ -37,10 +37,26 @@ export interface Project {
 	sections?: {
 		title: string;
 		body: string;
-		icon?: "credit" | "bag" | "clock" | "phone" | "cash";
+		icon?:
+			| "credit"
+			| "bag"
+			| "clock"
+			| "phone"
+			| "cash"
+			| "sparkles"
+			| "pin"
+			| "ticket"
+			| "users"
+			| "code";
 	}[];
+	/** Efecto MacBook con scroll: título y captura (índice en `images`). */
+	showcase?: { title: string; image: number };
 	/** Pasos del flujo ("Cómo funciona"), con nota opcional al final. */
 	steps?: { title: string; body: string }[];
+	/** Títulos de sección personalizados (por defecto: "Qué hace la plataforma", "Cómo funciona", "Impacto real"). */
+	sectionsTitle?: string;
+	stepsTitle?: string;
+	resultsTitle?: string;
 	stepsNote?: string;
 	/** Pie de foto por captura, mismo orden que `images`. */
 	captions?: string[];
@@ -73,6 +89,7 @@ export const projects: Project[] = [
 			"Vazza quería darle a sus clientes un canal propio para administrar su crédito: ver su línea, comprar en cualquier sucursal y pagar sin cuenta bancaria. Debía funcionar en teléfonos de gama media y sin pasar por una tienda de apps.",
 		solution:
 			"Una PWA en React y Vite que se instala desde el navegador, con un backend en Django que consulta el Buró de Crédito para valuar cada línea. Los pagos se generan con NetPay para liquidarse en OXXO.",
+		showcase: { title: "Tu crédito, en tu teléfono y en tu bolsillo", image: 1 },
 		highlights: [
 			{ value: "PWA", label: "Se instala en el teléfono" },
 			{ value: "100%", label: "De los usuarios con crédito" },
@@ -192,47 +209,189 @@ export const projects: Project[] = [
 	{
 		slug: "amanal",
 		title: "Amanal",
-		category: "Landing Page",
+		category: "Landing Page / Proyecto propio",
+		seoTitle: "Amanal: landing de hackathon con animaciones | Avantgardev",
+		subtitle: "Landing de hackathon con scroll narrativo, mapa y animaciones",
 		description:
-			"Landing de alto impacto con micro-interacciones y scroll narrativo para lanzamiento de producto.",
+			"Landing de hackathon con scroll narrativo, animaciones con GSAP y mapa de la sede. Proyecto propio de Avantgardev.",
 		longDescription:
-			"Diseñamos una landing page de lanzamiento para Amanal que combina micro-interacciones sofisticadas con un scroll narrativo que revela progresivamente las características del producto, generando anticipación y deseo.",
-		tags: ["Astro", "Tailwind CSS", "Lenis"],
+			"Un concepto interno: la landing de un hackathon ficticio sobre resiliencia en Chapultepec, creada por el equipo de Avantgardev para probar cómo trabajamos juntos.",
+		tags: ["Astro", "Tailwind CSS", "Lenis", "GSAP"],
 		accent: "primary",
 		image: landingAmanal.src,
 		images: [landingAmanal, infoAmanal, ubicacionAmanal],
+		alts: [
+			"Página de inicio de la landing Amanal con título, fecha, sede y dotación del hackathon",
+			"Página del track El Gran Acueducto con contexto, stack sugerido, desafíos y entregable",
+			"Sección Sede de Amanal con mapa oscuro del Complejo Cultural de Los Pinos",
+		],
+		captions: [
+			"Inicio con título, sede, cronograma y dotación",
+			"Detalle de un track con contexto, desafíos y entregable",
+			"Sede con mapa interactivo",
+		],
 		featured: true,
 		challenge:
-			"Amanal lanzaba un nuevo producto al mercado y necesitaba una presencia digital que generara impacto inmediato y capturara leads cualificados desde el primer día.",
+			"Queríamos probar qué puede lograr un equipo bien coordinado con las herramientas adecuadas: diseño, contenido, desarrollo y animación trabajando en paralelo sobre una misma landing.",
 		solution:
-			"Creamos una landing con scroll narrativo que revela el producto gradualmente, micro-interacciones que responden al cursor, y un formulario de registro con incentivos gamificados.",
-		results: [
-			"3,200 registros en la primera semana",
-			"Tasa de scroll completo del 72%",
-			"Costo por lead 45% menor al proyectado",
+			"Una landing completa con scroll narrativo, tracks, sede con mapa y pase de registro, construida entre todo el equipo con aprobaciones e iteraciones en cada etapa.",
+		showcase: { title: "Una landing con carácter propio", image: 0 },
+		highlights: [
+			{ value: "Propio", label: "Proyecto interno de Avantgardev" },
+			{ value: "Equipo", label: "Diseño, contenido y desarrollo en paralelo" },
+			{ value: "GSAP", label: "Animaciones y scroll narrativo" },
 		],
-		year: "2025",
-		client: "Amanal",
+		sectionsTitle: "Qué incluye",
+		sections: [
+			{
+				icon: "sparkles",
+				title: "Animaciones y scroll",
+				body: "Scroll suave con Lenis y animaciones con GSAP que guían la lectura.",
+			},
+			{
+				icon: "users",
+				title: "Tracks del hackathon",
+				body: "Cada track con contexto, stack sugerido, desafíos y entregable.",
+			},
+			{
+				icon: "pin",
+				title: "Sede con mapa",
+				body: "Mapa interactivo con los puntos de activación del evento.",
+			},
+			{
+				icon: "ticket",
+				title: "Registro y pase",
+				body: "Llamadas a registrarse y sección de pase para participantes.",
+			},
+			{
+				icon: "code",
+				title: "Sitio estático rápido",
+				body: "Astro y Tailwind CSS para cargar rápido y mantener el código simple.",
+			},
+		],
+		stepsTitle: "Cómo se hizo",
+		steps: [
+			{
+				title: "Brief y concepto",
+				body: "Definimos el hackathon, su narrativa y las secciones de la landing.",
+			},
+			{
+				title: "Diseño y contenido",
+				body: "Identidad visual, textos y estructura de tracks, sede y pase.",
+			},
+			{
+				title: "Desarrollo y animación",
+				body: "Construcción con Astro, Tailwind, Lenis y GSAP en paralelo con el contenido.",
+			},
+			{
+				title: "Aprobación e iteración",
+				body: "Revisiones en conjunto hasta publicar la versión final.",
+			},
+		],
+		stepsNote:
+			"Todo el desarrollo, las animaciones y el contenido se completaron en unas 8 horas. Es una prueba interna del equipo, no el plazo de entrega de un proyecto de cliente: hubo aprobaciones e iteraciones en conjunto. Muestra lo que logra un equipo bien coordinado con las herramientas adecuadas.",
+		resultsTitle: "Lo que demuestra",
+		results: [
+			"Landing completa con animaciones, contenido y mapa, publicada y funcional",
+			"Flujo de trabajo en equipo validado entre diseño, contenido y desarrollo",
+			"Base reutilizable para futuros lanzamientos y eventos",
+		],
+		year: "2026",
+		client: "Avantgardev",
 		url: "https://amanal.netlify.app/",
 	},
 	{
 		slug: "sentiment-unicornio",
 		title: "Sentiment Unicornio",
-		category: "Social listening",
+		category: "Social listening / SaaS",
+		seoTitle: "Unicornio: plataforma de social listening | Avantgardev",
+		subtitle: "Plataforma de social listening para entender menciones, sentimiento y narrativas",
 		description:
-			"Plataforma que identifica cambios, narrativas, percepción, actores, riesgos y oportunidades en la conversación.",
+			"Landing y dashboard de social listening en Next.js: menciones, sentimiento, alertas de crisis y narrativas de redes y noticias en un solo tablero.",
 		longDescription:
-			"Unicornio reúne menciones, tono y señales editoriales en un tablero para ver qué está ocurriendo y qué merece atención.",
-		tags: ["Social listening", "Dashboard", "Analítica"],
+			"Unicornio reúne redes sociales y medios en un tablero sencillo para que cualquier empresa entienda qué se dice de su marca y qué merece atención.",
+		tags: ["Next.js", "Dashboard", "Analítica", "SEO"],
 		accent: "neon",
 		image: landingSentiment.src,
 		images: [landingSentiment, dashboardSentiment, dashboard2Sentiment],
+		alts: [
+			"Landing de Unicornio con el lema Entender lo que cambia, identificar lo que importa y vista previa del dashboard de menciones",
+			"Dashboard de Unicornio con proyectos activos, resumen con IA, sentimiento por proyecto y alertas de crisis",
+			"Dashboard de Unicornio con audiencia por edad y género, mapa de regiones con mayor cuota de voz y menciones por región",
+		],
+		captions: [
+			"Landing enfocada en equipos de marketing",
+			"Panel de proyectos con sentimiento, alertas de crisis y resumen con IA",
+			"Audiencia por edad, género y región",
+		],
 		featured: true,
 		challenge:
-			"Hacía falta un lugar donde leer el volumen, el tono y las menciones editoriales de una marca sin saltar entre fuentes.",
+			"La landing debía ser atractiva y clara para equipos de marketing. El verdadero reto fue el dashboard: un sistema integral de métricas para seguir redes sociales y canales de noticias, pero tan sencillo que cualquier empresa pudiera usarlo sin ser analista.",
 		solution:
-			"Un tablero de escucha social con menciones, sentimiento y las publicaciones que concentran la conversación.",
-		results: [],
+			"Una landing llamativa y un dashboard construidos en Next.js, con un tablero por proyecto que concentra menciones, sentimiento, alertas, narrativas y audiencia, y lo presenta de forma simple y accionable. Nos encargamos del frontend.",
+		showcase: { title: "Toda la conversación, en un solo tablero", image: 1 },
+		highlights: [
+			{ value: "85%", label: "Mediciones más acertadas" },
+			{ value: "73%", label: "Usuarios nuevos en el primer mes" },
+			{ value: "Tiempo real", label: "Métricas y tendencias al momento" },
+		],
+		sections: [
+			{
+				icon: "chart",
+				title: "Menciones y volumen",
+				body: "Cuántas veces se habla de tu marca, en qué redes y medios, y cómo cambia con el tiempo.",
+			},
+			{
+				icon: "face",
+				title: "Sentimiento",
+				body: "Qué porcentaje de la conversación es positivo, neutral o negativo, por proyecto.",
+			},
+			{
+				icon: "bell",
+				title: "Alertas de crisis",
+				body: "Avisos cuando aumentan las menciones negativas, para reaccionar a tiempo.",
+			},
+			{
+				icon: "users",
+				title: "Audiencia y regiones",
+				body: "Quién habla: edad, género y regiones con mayor cuota de voz.",
+			},
+			{
+				icon: "sparkles",
+				title: "Resumen con IA",
+				body: "Un resumen automático de lo más importante de cada proyecto.",
+			},
+			{
+				icon: "search",
+				title: "Búsqueda y benchmarking",
+				body: "Explora conversaciones y compara tu marca con otras.",
+			},
+		],
+		steps: [
+			{
+				title: "Crea un proyecto",
+				body: "Define qué monitorear: marca, persona o tema, con sus palabras clave.",
+			},
+			{
+				title: "Conecta tus canales",
+				body: "Redes sociales y canales de noticias en un mismo lugar.",
+			},
+			{
+				title: "Analiza",
+				body: "Sentimiento, narrativas y audiencia, con métricas y tendencias al momento.",
+			},
+			{
+				title: "Actúa a tiempo",
+				body: "Alertas y resúmenes te dicen qué merece atención.",
+			},
+		],
+		stepsNote:
+			"Se desarrolló en Next.js para mejorar el SEO de la landing y ofrecer un dashboard rápido. El foco fue la simplicidad: que cualquier empresa pueda leer sus métricas sin conocimientos técnicos.",
+		results: [
+			"Mediciones 85% más acertadas",
+			"Verificación de métricas y tendencias al momento",
+			"73% de usuarios nuevos en el primer mes de lanzamiento",
+		],
 		year: "2026",
 		client: "Unicornio",
 		url: "https://sociallisteningunicornio.com/",
