@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { bookingConfig } from "../data/booking";
+import { trackEvent } from "../lib/analytics";
 import { addDays, dateKeyInZone, todayInZone, weekdayOf, zonedTimeToUtc } from "../lib/time";
 import { PhoneInput } from "./ui/phone-input";
 
@@ -217,6 +218,7 @@ export default function Booking() {
 				throw new Error(data?.error || "No se pudo agendar la llamada");
 			}
 
+			trackEvent("book_call", { lead_source: "agenda" });
 			setBookedStart(data.start ?? selectedSlot);
 			setMeetLink(data.meetLink ?? null);
 		} catch (error) {

@@ -1,4 +1,5 @@
 import { type FormEvent, useEffect, useState } from "react";
+import { trackEvent } from "../lib/analytics";
 
 declare global {
 	interface Window {
@@ -68,6 +69,7 @@ export default function ContactForm() {
 			}
 
 			setStatus("success");
+			trackEvent("generate_lead", { lead_source: "contact_form" });
 			form.reset();
 		} catch (err) {
 			setStatus("error");
