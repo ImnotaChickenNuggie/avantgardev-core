@@ -5,8 +5,10 @@ import { calendarConfigured, calendarId, fetchBusy, getCalendar, meetLinkFromEve
 
 interface RecaptchaResponse {
 	success: boolean;
-	score: number;
-	action: string;
+	score?: number;
+	action?: string;
+	hostname?: string;
+	"error-codes"?: string[];
 }
 
 const CORS_HEADERS = {
@@ -33,13 +35,31 @@ async function verifyCaptcha(token: string): Promise<boolean> {
 	});
 
 	const data = (await response.json()) as RecaptchaResponse;
-	return data.success && data.score >= 0.5 && data.action === "book";
+	const passed = data.success && (data.score ?? 0) >= 0.5 && data.action === "book";
+	if (!passed) {
+		console.error("reCAPTCHA rechazado", {
+			success: data.success,
+			score: data.score,
+			action: data.action,
+			hostname: data.hostname,
+			errors: data["error-codes"],
+		});
+	}
+	return passed;
 }
 
-function readPayload(body: unknown): { name: string; email: string; note: string; start: string; captchaToken: string } {
+function readPayload(body: unknown): {
+	name: string;
+	email: string;
+	phone: string;
+	note: string;
+	start: string;
+	captchaToken: string;
+} {
 	const data = body as Record<string, unknown>;
 	const name = typeof data.name === "string" ? data.name.trim() : "";
 	const email = typeof data.email === "string" ? data.email.trim() : "";
+	const phone = typeof data.phone === "string" ? data.phone.trim() : "";
 	const note = typeof data.note === "string" ? data.note.trim() : "";
 	const start = typeof data.start === "string" ? data.start.trim() : "";
 	const captchaToken = typeof data.captchaToken === "string" ? data.captchaToken.trim() : "";
@@ -56,11 +76,15 @@ function readPayload(body: unknown): { name: string; email: string; note: string
 		throw new Error("Uno o mas campos exceden el limite de caracteres");
 	}
 
+	if (phone && !/^\+\d{8,15}$/.test(phone)) {
+		throw new Error("Telefono invalido");
+	}
+
 	if (Number.isNaN(Date.parse(start))) {
 		throw new Error("Horario invalido");
 	}
 
-	return { name, email, note, start, captchaToken };
+	return { name, email, phone, note, start, captchaToken };
 }
 
 export default async (req: Request, _context: Context) => {
@@ -78,7 +102,7 @@ export default async (req: Request, _context: Context) => {
 
 	try {
 		const body = await req.json();
-		const { name, email, note, start, captchaToken } = readPayload(body);
+		const { name, email, phone, note, start, captchaToken } = readPayload(body);
 
 		const isHuman = await verifyCaptcha(captchaToken);
 		if (!isHuman) {
@@ -97,6 +121,7 @@ export default async (req: Request, _context: Context) => {
 		const endDate = new Date(startDate.getTime() + bookingConfig.slotMinutes * 60 * 1000);
 		const description = [
 			"Llamada de 30 minutos agendada desde avantgardev.com.mx/agenda.",
+			phone ? `\nTeléfono: ${phone}` : "",
 			note ? `\nNota:\n${note}` : "",
 		].join("");
 
@@ -132,7 +157,7 @@ export default async (req: Request, _context: Context) => {
 		);
 	} catch (error) {
 		const message = error instanceof Error ? error.message : "No se pudo crear la cita";
-		const status = message === "Todos los campos son obligatorios" || message === "Email invalido" || message === "Horario invalido" || message.includes("limite") ? 400 : 500;
+		const status = message === "Todos los campos son obligatorios" || message === "Email invalido" || message === "Horario invalido" || message === "Telefono invalido" || message.includes("limite") ? 400 : 500;
 		return json({ error: message }, status);
 	}
 };

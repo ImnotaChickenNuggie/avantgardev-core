@@ -1,4 +1,5 @@
 import { bookingConfig } from "../data/booking";
+import { isMexicanHoliday } from "./holidays";
 import { addDays, todayInZone, weekdayOf, zonedTimeToUtc } from "./time";
 
 export interface BusyInterval {
@@ -26,15 +27,22 @@ function overlaps(startMs: number, endMs: number, busy: BusyInterval[]): boolean
 }
 
 export function listOpenSlots(busy: BusyInterval[], now = new Date()): string[] {
-	const { timezone, slotMinutes, minNoticeHours, horizonDays, weekly, blockedDates } =
-		bookingConfig;
+	const {
+		timezone,
+		slotMinutes,
+		minNoticeHours,
+		horizonDays,
+		weekly,
+		blockedDates,
+		blockMexicanHolidays,
+	} = bookingConfig;
 	const earliest = now.getTime() + minNoticeHours * 60 * 60 * 1000;
 	const startDate = todayInZone(timezone, now);
 	const slots: string[] = [];
 
 	for (let day = 0; day <= horizonDays; day++) {
 		const date = addDays(startDate, day);
-		if (blockedDates.includes(date)) continue;
+		if (blockedDates.includes(date) || (blockMexicanHolidays && isMexicanHoliday(date))) continue;
 
 		for (const window of weekly[weekdayOf(date, timezone)]) {
 			const end = minutes(window.end);

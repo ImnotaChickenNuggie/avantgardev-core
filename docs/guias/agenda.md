@@ -13,6 +13,7 @@ Los días y el horario de atención salen de [`src/data/booking.ts`](../../src/d
 - No se ofrece un hueco si empieza en menos de 12 horas (`minNoticeHours`)
 - Se muestran los próximos 21 días, incluido hoy (`horizonDays`)
 - `blockedDates`: fechas `YYYY-MM-DD` que no se ofrecen (vacaciones, viajes)
+- `blockMexicanHolidays` (por defecto `true`): bloquea los festivos de México, calculados en [`src/lib/holidays.ts`](../../src/lib/holidays.ts): 1 ene, 1.er lunes de feb, 3.er lunes de mar, 1 may, 16 sep, 3.er lunes de nov, 25 dic, 1 oct cada 6 años y Jueves/Viernes Santo
 
 El último slot de un día de 10:00 a 18:00 empieza a las 17:30.
 
